@@ -4,416 +4,294 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ilhiana Vallecillo | Nutrióloga &amp; El Rinconcito del Té</title>
+    <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","woata1xdu5");</script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --green-dark: #1a5c38;
-            --green-mid: #2d8653;
-            --green-light: #4db87a;
-            --green-pale: #e8f5ee;
-            --green-pale2: #f0faf4;
-            --white: #ffffff;
-            --text-dark: #1a2e1f;
-            --text-mid: #4a6357;
-            --text-light: #8aab97;
-            --border: #d0e8da;
-            --touch: 48px;
+            --green-dark: #1a5c38; --green-mid: #2d8653; --green-light: #4db87a;
+            --green-pale: #e8f5ee; --green-pale2: #f0faf4; --white: #ffffff;
+            --text-dark: #1a2e1f; --text-mid: #4a6357; --text-light: #8aab97;
+            --border: #d0e8da; --touch: 48px;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); font-size: 16px; }
 
-        /* ── NAV ── */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 5%; display: flex; align-items: center;
-            justify-content: space-between; height: 60px;
-        }
-        .nav-logo {
-            font-family: 'Playfair Display', serif; font-size: 1.2rem;
-            color: var(--green-dark); font-weight: 700; text-decoration: none;
-        }
-        .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-mid);
-            font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
-            min-height: var(--touch); display: flex; align-items: center;
-        }
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--green-dark); font-weight: 700; text-decoration: none; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; min-height: var(--touch); display: flex; align-items: center; }
         .nav-links a:hover { color: var(--green-dark); }
-        .nav-cta {
-            background: var(--green-dark); color: var(--white) !important;
-            padding: 0.55rem 1.2rem; border-radius: 50px;
-        }
+        .nav-cta { background: var(--green-dark); color: var(--white) !important; padding: 0.55rem 1.2rem; border-radius: 50px; }
         .nav-cta:hover { background: var(--green-mid) !important; }
-
-        /* Hamburger */
-        .nav-burger {
-            display: none; flex-direction: column; gap: 5px; cursor: pointer;
-            padding: 8px; border: none; background: none;
-            min-width: var(--touch); min-height: var(--touch);
-            align-items: center; justify-content: center;
-        }
-        .nav-burger span {
-            display: block; width: 24px; height: 2px;
-            background: var(--green-dark); border-radius: 2px;
-            transition: all 0.3s;
-        }
+        .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border: none; background: none; min-width: var(--touch); min-height: var(--touch); align-items: center; justify-content: center; }
+        .nav-burger span { display: block; width: 24px; height: 2px; background: var(--green-dark); border-radius: 2px; transition: all 0.3s; }
         .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .nav-burger.open span:nth-child(2) { opacity: 0; }
         .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        /* Mobile drawer */
-        .nav-drawer {
-            display: none; position: fixed; top: 60px; left: 0; right: 0;
-            background: white; border-bottom: 1px solid var(--border);
-            padding: 1rem 5% 1.5rem; z-index: 199; flex-direction: column; gap: 0.2rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
+        .nav-drawer { display: none; position: fixed; top: 60px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 1rem 5% 1.5rem; z-index: 199; flex-direction: column; gap: 0.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .nav-drawer.open { display: flex; }
-        .nav-drawer a {
-            text-decoration: none; color: var(--text-dark); font-weight: 500;
-            padding: 0.9rem 0; border-bottom: 1px solid var(--border); font-size: 1rem;
-            display: flex; align-items: center; gap: 0.6rem;
-        }
+        .nav-drawer a { text-decoration: none; color: var(--text-dark); font-weight: 500; padding: 0.9rem 0; border-bottom: 1px solid var(--border); font-size: 1rem; display: flex; align-items: center; gap: 0.6rem; }
         .nav-drawer a:last-child { border-bottom: none; }
-        .nav-drawer .drawer-wp {
-            margin-top: 0.8rem; background: #25D366; color: white !important;
-            padding: 0.9rem 1.2rem; border-radius: 12px; border: none;
-            justify-content: center; font-size: 1rem;
-        }
+        .nav-drawer .drawer-wp { margin-top: 0.8rem; background: #25D366; color: white !important; padding: 0.9rem 1.2rem; border-radius: 12px; border: none; justify-content: center; font-size: 1rem; }
 
-        /* ── HERO ── */
-        .hero {
-            min-height: 100svh; display: flex; align-items: center;
-            padding: 72px 5% 3rem;
-            background: linear-gradient(135deg, var(--green-pale2) 0%, var(--white) 60%, var(--green-pale) 100%);
-            position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: -150px; right: -150px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(45,134,83,0.07) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .hero-inner {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 3rem; align-items: center; width: 100%;
-        }
+        /* HERO */
+        .hero { min-height: 100svh; display: flex; align-items: center; padding: 72px 5% 3rem; background: linear-gradient(135deg, var(--green-pale2) 0%, var(--white) 60%, var(--green-pale) 100%); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45,134,83,0.07) 0%, transparent 70%); border-radius: 50%; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; width: 100%; }
         .hero-text { z-index: 1; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--green-pale); color: var(--green-dark);
-            border: 1px solid var(--border); padding: 0.45rem 1rem;
-            border-radius: 50px; font-size: 0.78rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.2rem;
-        }
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 3.6rem);
-            line-height: 1.1; color: var(--green-dark); margin-bottom: 1rem;
-        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-pale); color: var(--green-dark); border: 1px solid var(--border); padding: 0.45rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.2rem; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; color: var(--green-dark); margin-bottom: 1rem; }
         .hero-title span { color: var(--green-mid); }
-        .hero-sub {
-            font-size: 1.05rem; color: var(--text-mid); line-height: 1.7;
-            margin-bottom: 2rem; max-width: 480px;
-        }
+        .hero-sub { font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 2rem; max-width: 480px; }
         .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: #25D366; color: white; padding: 0.85rem 1.6rem;
-            border-radius: 50px; text-decoration: none; font-weight: 600;
-            font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-            min-height: var(--touch);
-        }
-        .btn-primary:active { transform: scale(0.97); }
-        .btn-secondary {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: transparent; color: var(--green-dark); padding: 0.85rem 1.6rem;
-            border-radius: 50px; text-decoration: none; font-weight: 600;
-            font-size: 1rem; border: 2px solid var(--green-dark); transition: all 0.2s;
-            min-height: var(--touch);
-        }
+        .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: #25D366; color: white; padding: 0.85rem 1.6rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 20px rgba(37,211,102,0.35); min-height: var(--touch); transition: opacity 0.2s; }
+        .btn-primary:active { opacity: 0.85; }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--green-dark); padding: 0.85rem 1.6rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid var(--green-dark); transition: all 0.2s; min-height: var(--touch); }
         .btn-secondary:hover { background: var(--green-dark); color: white; }
-
-        /* Profile card */
-        .hero-card {
-            background: white; border-radius: 24px; padding: 2rem;
-            box-shadow: 0 16px 50px rgba(26,92,56,0.12);
-            border: 1px solid var(--border); text-align: center;
-        }
+        .hero-card { background: white; border-radius: 24px; padding: 2rem; box-shadow: 0 16px 50px rgba(26,92,56,0.12); border: 1px solid var(--border); text-align: center; }
         .profile-photo-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 1rem; }
-        .profile-photo-ring {
-            position: absolute; inset: -4px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--green-mid), var(--green-light), #a8e6c3);
-        }
-        .profile-photo-ring-inner {
-            position: absolute; inset: 4px; border-radius: 50%;
-            background: white; overflow: hidden;
-        }
-        .profile-photo-ring-inner img {
-            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-        }
+        .profile-photo-ring { position: absolute; inset: -4px; border-radius: 50%; background: linear-gradient(135deg, var(--green-mid), var(--green-light), #a8e6c3); }
+        .profile-photo-ring-inner { position: absolute; inset: 4px; border-radius: 50%; background: white; overflow: hidden; }
+        .profile-photo-ring-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .profile-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--green-dark); margin-bottom: 0.25rem; }
         .profile-handle { color: var(--text-light); font-size: 0.85rem; margin-bottom: 0.9rem; }
         .profile-bio { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.2rem; }
-        .profile-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            border-top: 1px solid var(--border); padding-top: 1rem; margin-bottom: 1.2rem;
-        }
+        .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); padding-top: 1rem; margin-bottom: 1.2rem; }
         .stat-num { font-weight: 700; font-size: 1.05rem; color: var(--green-dark); }
         .stat-label { font-size: 0.68rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.04em; }
         .profile-social { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
-        .social-pill {
-            display: inline-flex; align-items: center; gap: 0.35rem;
-            padding: 0.4rem 0.85rem; border-radius: 50px; font-size: 0.78rem;
-            font-weight: 600; text-decoration: none; transition: opacity 0.2s;
-            min-height: 36px;
-        }
-        .social-pill:active { opacity: 0.75; }
+        .social-pill { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.85rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-decoration: none; min-height: 36px; }
         .social-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
         .social-fb { background: #1877F2; color: white; }
-        .social-fb2 { background: #1877F2; color: white; }
 
-        /* ── SECTIONS ── */
+        /* SECTIONS */
         .section { padding: 4rem 5%; }
         .section-alt { background: var(--green-pale2); }
         .container { max-width: 1100px; margin: 0 auto; }
-        .section-label {
-            font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--green-mid); margin-bottom: 0.5rem;
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.7rem, 4vw, 2.4rem);
-            color: var(--green-dark); margin-bottom: 0.7rem;
-        }
-        .section-desc {
-            color: var(--text-mid); font-size: 1rem; line-height: 1.7;
-            max-width: 560px; margin-bottom: 2.5rem;
-        }
+        .section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green-mid); margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.4rem); color: var(--green-dark); margin-bottom: 0.7rem; }
+        .section-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem; }
 
-        /* ── SERVICES ── */
+        /* SERVICES */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
-        .service-card {
-            background: white; border-radius: 18px; padding: 1.6rem;
-            border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
-        }
+        .service-card { background: white; border-radius: 18px; padding: 1.6rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
         .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(26,92,56,0.1); }
-        .service-icon {
-            width: 52px; height: 52px; border-radius: 14px;
-            background: var(--green-pale); display: flex; align-items: center;
-            justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; color: var(--green-mid);
-        }
+        .service-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; color: var(--green-mid); }
         .service-title { font-weight: 700; font-size: 1rem; color: var(--green-dark); margin-bottom: 0.5rem; }
         .service-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; }
 
-        /* ── MENU SECTION ── */
-        .menu-header {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
-        }
-        .menu-brand-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: #fff8e6; color: #a0560a; border: 1px solid #f5d78e;
-            padding: 0.4rem 1rem; border-radius: 50px;
-            font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.05em; margin-bottom: 0.5rem;
-        }
-
-        /* Category tabs */
-        .menu-tabs {
-            display: flex; gap: 0.5rem; overflow-x: auto;
-            padding-bottom: 0.5rem; margin-bottom: 1.8rem;
-            scrollbar-width: none; -ms-overflow-style: none;
-        }
-        .menu-tabs::-webkit-scrollbar { display: none; }
-        .menu-tab {
-            flex-shrink: 0; padding: 0.55rem 1.1rem; border-radius: 50px;
-            border: 1.5px solid var(--border); background: white;
-            font-size: 0.88rem; font-weight: 600; color: var(--text-mid);
-            cursor: pointer; transition: all 0.2s; white-space: nowrap;
-            min-height: var(--touch); display: flex; align-items: center; gap: 0.4rem;
-        }
-        .menu-tab.active {
-            background: var(--green-dark); color: white; border-color: var(--green-dark);
-        }
-        .menu-tab:active { transform: scale(0.96); }
-
-        /* Menu grid */
-        .menu-category { display: none; }
-        .menu-category.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-        .menu-item {
-            background: white; border-radius: 16px; padding: 1.2rem;
-            border: 1px solid var(--border); transition: box-shadow 0.2s;
-            display: flex; flex-direction: column; gap: 0.4rem;
-        }
-        .menu-item:active { box-shadow: 0 4px 16px rgba(26,92,56,0.12); }
-        .menu-item-emoji { font-size: 2rem; line-height: 1; }
-        .menu-item-name { font-weight: 700; font-size: 0.95rem; color: var(--green-dark); }
-        .menu-item-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; flex: 1; }
-        .menu-item-tag {
-            align-self: flex-start; background: var(--green-pale);
-            color: var(--green-mid); padding: 0.2rem 0.6rem;
-            border-radius: 50px; font-size: 0.72rem; font-weight: 600;
-        }
-        .menu-cta {
-            margin-top: 2rem; text-align: center;
-            background: linear-gradient(135deg, #fff8e6, #fff3d0);
-            border: 1px solid #f5d78e; border-radius: 20px; padding: 2rem;
-        }
+        /* MENU */
+        .menu-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .menu-brand-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff8e6; color: #a0560a; border: 1px solid #f5d78e; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .food-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        .food-card { background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
+        .food-slider { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--green-pale); cursor: zoom-in; }
+        .food-slider-track { display: flex; height: 100%; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+        .food-slider-track img { min-width: 100%; height: 100%; object-fit: cover; display: block; flex-shrink: 0; }
+        .food-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
+        .food-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; padding: 0; cursor: pointer; transition: background 0.2s; }
+        .food-dot.active { background: white; }
+        .food-card-body { padding: 1rem 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+        .food-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+        .food-name { font-weight: 700; font-size: 1rem; color: var(--green-dark); line-height: 1.3; }
+        .food-price { flex-shrink: 0; background: var(--green-dark); color: white; padding: 0.25rem 0.75rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
+        .food-desc { font-size: 0.84rem; color: var(--text-mid); line-height: 1.55; flex: 1; }
+        .food-order { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.6rem; background: #25D366; color: white; padding: 0.6rem 1rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.85rem; width: fit-content; min-height: 40px; }
+        .menu-cta { margin-top: 2rem; text-align: center; background: linear-gradient(135deg, #fff8e6, #fff3d0); border: 1px solid #f5d78e; border-radius: 20px; padding: 2rem; }
         .menu-cta p { color: #7a4a0a; font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
 
-        /* ── ABOUT ── */
+        /* BLOG */
+        .blog-scroll { display: flex; gap: 1.2rem; overflow-x: auto; padding-bottom: 0.8rem; scrollbar-width: none; -ms-overflow-style: none; }
+        .blog-scroll::-webkit-scrollbar { display: none; }
+        .blog-card { min-width: 270px; max-width: 300px; background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.2s; }
+        .blog-card:active { box-shadow: 0 6px 20px rgba(26,92,56,0.12); }
+        .blog-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--green-pale); }
+        .blog-video-wrap { aspect-ratio: 16/9; background: #000; pointer-events: none; }
+        .blog-video-wrap iframe { width: 100%; height: 100%; border: none; }
+        .yt-thumb-wrap { position: relative; aspect-ratio: 16/9; cursor: pointer; overflow: hidden; border-radius: 12px 12px 0 0; background: #000; }
+        .yt-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+        .yt-thumb-wrap:hover img { transform: scale(1.04); }
+        .yt-play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        .yt-play-btn i { width: 56px; height: 56px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; padding-left: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
+        .yt-thumb-wrap:hover .yt-play-btn i { transform: scale(1.1); }
+        .blog-card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+        .blog-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--green-mid); letter-spacing: 0.06em; }
+        .blog-title { font-weight: 700; font-size: 0.95rem; color: var(--green-dark); line-height: 1.35; }
+        .blog-date { font-size: 0.72rem; color: var(--text-light); }
+        .blog-excerpt { font-size: 0.83rem; color: var(--text-mid); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .blog-read { font-size: 0.82rem; font-weight: 600; color: var(--green-mid); margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+        .blog-empty { text-align: center; padding: 3rem 1rem; color: var(--text-light); font-size: 0.95rem; width: 100%; }
+        .section-row-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+
+        /* POST MODAL */
+        .post-modal { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.6); overflow-y: auto; padding: 1rem; }
+        .post-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+        .post-modal-inner { background: white; border-radius: 24px; max-width: 680px; width: 100%; padding: 1.8rem; position: relative; margin: auto; }
+        .post-modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--green-pale); color: var(--green-dark); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .post-modal-img { width: 100%; border-radius: 14px; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 1.2rem; display: block; }
+        .post-modal-video { width: 100%; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; margin-bottom: 0.6rem; }
+        .post-modal-video iframe { width: 100%; height: 100%; border: none; }
+        .post-modal-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--green-mid); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+        .post-modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green-dark); margin-bottom: 0.4rem; line-height: 1.2; }
+        .post-modal-date { font-size: 0.78rem; color: var(--text-light); margin-bottom: 1rem; }
+        .post-modal-content { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; white-space: pre-wrap; }
+        /* Media slider in modal */
+        .pm-slider { position: relative; margin-bottom: 1.2rem; }
+        .pm-slides { overflow: hidden; border-radius: 14px; aspect-ratio: 16/9; width: 100%; }
+        .pm-track { display: flex; height: 100%; transition: transform 0.35s ease; }
+        .pm-slide { flex: none; height: 100%; }
+        .pm-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .pm-slide iframe { width: 100%; height: 100%; border: none; display: block; }
+        .pm-nav { display: flex; justify-content: center; gap: 0.4rem; margin-top: 0.6rem; }
+        .pm-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+        .pm-dot.active { background: var(--green-mid); }
+        .pm-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-size: 0.9rem; color: var(--green-dark); display: flex; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .pm-arrow.prev { left: 0.5rem; }
+        .pm-arrow.next { right: 0.5rem; }
+
+        /* CATALOG */
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.2rem; }
+        .catalog-card { background: white; border-radius: 18px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
+        .catalog-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: var(--green-pale); }
+        .catalog-img-placeholder { width: 100%; aspect-ratio: 1; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--green-light); }
+        .catalog-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+        .catalog-badge { align-self: flex-start; background: var(--green-pale); color: var(--green-mid); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .catalog-name { font-weight: 700; font-size: 0.95rem; color: var(--green-dark); line-height: 1.3; }
+        .catalog-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; flex: 1; }
+        .catalog-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; gap: 0.5rem; }
+        .catalog-price { font-weight: 700; color: var(--green-dark); font-size: 1rem; }
+        .catalog-btn { display: inline-flex; align-items: center; gap: 0.3rem; background: #25D366; color: white; padding: 0.45rem 0.8rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+        .catalog-empty { text-align: center; padding: 3rem; color: var(--text-light); font-size: 0.95rem; grid-column: 1/-1; }
+
+        /* ABOUT */
         .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
-        .about-visual {
-            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-            border-radius: 24px; padding: 2.5rem 2rem; color: white; text-align: center;
-        }
-        .about-visual .big-letter {
-            font-family: 'Playfair Display', serif; font-size: 7rem; line-height: 1;
-            opacity: 0.18; color: white; font-weight: 700;
-        }
-        .about-visual .tagline {
-            font-size: 1.2rem; font-weight: 600; margin-top: -1.8rem; position: relative; z-index: 1;
-        }
+        .about-visual { background: linear-gradient(135deg, var(--green-dark), var(--green-mid)); border-radius: 24px; padding: 2.5rem 2rem; color: white; text-align: center; }
+        .about-visual .big-letter { font-family: 'Playfair Display', serif; font-size: 7rem; line-height: 1; opacity: 0.18; color: white; font-weight: 700; }
+        .about-visual .tagline { font-size: 1.2rem; font-weight: 600; margin-top: -1.8rem; position: relative; z-index: 1; }
         .about-visual .sub { font-size: 0.88rem; opacity: 0.75; margin-top: 0.4rem; }
         .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; justify-content: center; }
-        .about-tag {
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-            color: white; padding: 0.3rem 0.85rem; border-radius: 50px; font-size: 0.78rem; font-weight: 500;
-        }
+        .about-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 0.3rem 0.85rem; border-radius: 50px; font-size: 0.78rem; font-weight: 500; }
         .pills-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.8rem; }
         .pills-list li { display: flex; align-items: flex-start; gap: 0.8rem; }
         .pills-list li i { color: var(--green-mid); margin-top: 0.15rem; flex-shrink: 0; }
         .pills-list li span { color: var(--text-mid); font-size: 0.93rem; line-height: 1.5; }
 
-        /* ── CONTACT ── */
+        /* CONTACT */
         .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
         .contact-info p { color: var(--text-mid); font-size: 1rem; line-height: 1.7; margin-bottom: 1.8rem; }
         .contact-channels { display: flex; flex-direction: column; gap: 0.8rem; }
-        .contact-channel {
-            display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem;
-            background: white; border: 1px solid var(--border); border-radius: 14px;
-            text-decoration: none; color: var(--text-dark); transition: all 0.2s;
-            min-height: var(--touch);
-        }
+        .contact-channel { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; background: white; border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text-dark); transition: all 0.2s; min-height: var(--touch); }
         .contact-channel:hover { border-color: var(--green-mid); box-shadow: 0 4px 16px rgba(26,92,56,0.08); }
-        .channel-icon {
-            width: 42px; height: 42px; border-radius: 11px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; flex-shrink: 0;
-        }
-        .ch-wp { background: #e7fdf1; color: #25D366; }
-        .ch-ig { background: #fde7e7; color: #c13584; }
-        .ch-fb { background: #e7effd; color: #1877F2; }
-        .ch-title { font-weight: 600; font-size: 0.88rem; }
-        .ch-val { font-size: 0.82rem; color: var(--text-mid); }
-        .contact-cta-box {
-            background: linear-gradient(135deg, var(--green-dark), #3aaa68);
-            border-radius: 24px; padding: 2.2rem; color: white; text-align: center;
-        }
+        .channel-icon { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .ch-wp { background: #e7fdf1; color: #25D366; } .ch-ig { background: #fde7e7; color: #c13584; } .ch-fb { background: #e7effd; color: #1877F2; }
+        .ch-title { font-weight: 600; font-size: 0.88rem; } .ch-val { font-size: 0.82rem; color: var(--text-mid); }
+        .contact-cta-box { background: linear-gradient(135deg, var(--green-dark), #3aaa68); border-radius: 24px; padding: 2.2rem; color: white; text-align: center; }
         .contact-cta-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.7rem; }
         .contact-cta-box p { opacity: 0.85; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1.6rem; }
-        .btn-white {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: white; color: var(--green-dark); padding: 0.9rem 1.8rem;
-            border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem;
-            transition: transform 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-            min-height: var(--touch);
-        }
-        .btn-white:active { transform: scale(0.97); }
+        .btn-white { display: inline-flex; align-items: center; gap: 0.6rem; background: white; color: var(--green-dark); padding: 0.9rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-height: var(--touch); }
 
-        /* ── FOOTER ── */
-        footer {
-            background: var(--green-dark); color: rgba(255,255,255,0.65);
-            text-align: center; padding: 2rem 5%; font-size: 0.85rem;
-        }
+        /* REVIEWS */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 3rem; }
+        .review-card { background: white; border-radius: 18px; padding: 1.4rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.7rem; }
+        .review-stars { color: #f5a623; font-size: 1rem; letter-spacing: 2px; }
+        .review-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; flex: 1; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.3rem; }
+        .review-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--green-dark), var(--green-light)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.85rem; flex-shrink: 0; }
+        .review-name { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); }
+        .review-date { font-size: 0.75rem; color: var(--text-light); }
+        .review-form-wrap { background: white; border-radius: 20px; border: 1px solid var(--border); padding: 2rem; max-width: 560px; margin: 0 auto; }
+        .review-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--green-dark); margin-bottom: 0.4rem; }
+        .review-form-wrap > p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 1.5rem; }
+        .star-picker { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; flex-direction: row-reverse; justify-content: flex-end; }
+        .star-picker input { display: none; }
+        .star-picker label { font-size: 2rem; color: #d0d0d0; cursor: pointer; transition: color 0.15s; line-height: 1; }
+        .star-picker input:checked ~ label, .star-picker label:hover, .star-picker label:hover ~ label { color: #f5a623; }
+        .form-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+        .form-field label { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+        .form-field input, .form-field textarea { border: 1.5px solid var(--border); border-radius: 12px; padding: 0.8rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-dark); outline: none; transition: border-color 0.2s; background: var(--green-pale2); resize: none; }
+        .form-field input:focus, .form-field textarea:focus { border-color: var(--green-mid); background: white; }
+        .form-submit { width: 100%; padding: 0.95rem; border: none; border-radius: 50px; background: var(--green-dark); color: white; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: var(--touch); transition: opacity 0.2s; }
+        .form-submit:active { opacity: 0.85; }
+        .review-success { display: none; text-align: center; padding: 1.5rem; background: var(--green-pale); border-radius: 14px; color: var(--green-dark); font-weight: 600; margin-top: 1rem; }
+        .review-note { font-size: 0.78rem; color: var(--text-light); text-align: center; margin-top: 0.8rem; }
+
+        /* LIGHTBOX */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; flex-direction: column; }
+        .lightbox.open { display: flex; }
+        .lightbox-img-wrap { position: relative; width: 100%; flex: 1; overflow: hidden; display: flex; }
+        .lightbox-track { display: flex; flex-shrink: 0; width: 100%; height: 100%; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+        .lightbox-track img { width: 100vw; min-width: 100vw; max-height: 85svh; height: 85svh; object-fit: contain; display: block; flex-shrink: 0; }
+        .lightbox-close { position: absolute; top: 1rem; right: 1rem; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(4px); }
+        .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .lightbox-prev { left: 1rem; } .lightbox-next { right: 1rem; } .lightbox-arrow.hidden { display: none; }
+        .lightbox-footer { padding: 1rem; display: flex; gap: 8px; align-items: center; justify-content: center; }
+        .lightbox-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+        .lightbox-dot.active { background: white; }
+        .lightbox-counter { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-left: 0.5rem; }
+
+        /* FOOTER */
+        footer { background: var(--green-dark); color: rgba(255,255,255,0.65); text-align: center; padding: 2rem 5%; font-size: 0.85rem; }
         footer a { color: rgba(255,255,255,0.85); text-decoration: none; }
         footer a:hover { color: white; }
 
-        /* WhatsApp float */
-        .wp-float {
-            position: fixed; bottom: 1.5rem; right: 1.5rem;
-            width: 58px; height: 58px; background: #25D366; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.7rem; color: white; text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.5); z-index: 999;
-        }
-        .wp-float:active { transform: scale(0.93); }
+        /* WP FLOAT */
+        .wp-float { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; color: white; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.5); z-index: 999; }
+        .dots-pattern { position: absolute; bottom: 1.5rem; left: 1.5rem; width: 100px; height: 100px; background-image: radial-gradient(circle, var(--green-mid) 1.5px, transparent 1.5px); background-size: 14px 14px; opacity: 0.13; pointer-events: none; }
 
-        .dots-pattern {
-            position: absolute; bottom: 1.5rem; left: 1.5rem; width: 100px; height: 100px;
-            background-image: radial-gradient(circle, var(--green-mid) 1.5px, transparent 1.5px);
-            background-size: 14px 14px; opacity: 0.13; pointer-events: none;
-        }
-
-        /* ── RESPONSIVE ── */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-burger { display: flex; }
-
+            .nav-links { display: none; } .nav-burger { display: flex; }
             .hero { padding: 72px 5% 2.5rem; min-height: auto; }
             .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-card { order: -1; }
-            .hero-sub { max-width: 100%; }
-            .hero-actions { flex-direction: column; }
-            .hero-actions a { justify-content: center; }
-
+            .hero-card { order: -1; } .hero-sub { max-width: 100%; }
+            .hero-actions { flex-direction: column; } .hero-actions a { justify-content: center; }
             .about-inner { grid-template-columns: 1fr; gap: 2rem; }
             .about-visual .big-letter { font-size: 5rem; }
-
             .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
-
             .section { padding: 3rem 5%; }
-
-            .menu-category.active { grid-template-columns: 1fr 1fr; }
-
             .services-grid { grid-template-columns: 1fr 1fr; }
+            .catalog-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        @media (max-width: 420px) {
-            .menu-category.active { grid-template-columns: 1fr; }
+        @media (max-width: 480px) {
+            .food-grid { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: 1fr; }
+            .catalog-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 380px) {
+            .catalog-grid { grid-template-columns: 1fr; }
             .nav-logo { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
     <a href="#inicio" class="nav-logo">Ilhiana Vallecillo</a>
     <ul class="nav-links">
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#menu">Menú</a></li>
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#catalogo">Red Natura</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
         <li><a href="https://wa.me/529681047000" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
     </ul>
-    <button class="nav-burger" id="burger" aria-label="Menú">
-        <span></span><span></span><span></span>
-    </button>
+    <button class="nav-burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
     <a href="#servicios" onclick="closeDrawer()"><i class="fas fa-th-large" style="color:var(--green-mid);width:20px"></i> Servicios</a>
     <a href="#menu" onclick="closeDrawer()"><i class="fas fa-utensils" style="color:var(--green-mid);width:20px"></i> Menú del Rinconcito</a>
+    <a href="#blog" onclick="closeDrawer()"><i class="fas fa-newspaper" style="color:var(--green-mid);width:20px"></i> Blog & Noticias</a>
+    <a href="#catalogo" onclick="closeDrawer()"><i class="fas fa-leaf" style="color:var(--green-mid);width:20px"></i> Catálogo Red Natura</a>
     <a href="#sobre-mi" onclick="closeDrawer()"><i class="fas fa-user" style="color:var(--green-mid);width:20px"></i> Sobre mí</a>
-    <a href="#contacto" onclick="closeDrawer()"><i class="fas fa-phone" style="color:var(--green-mid);width:20px"></i> Contacto</a>
+    <a href="#resenas" onclick="closeDrawer()"><i class="fas fa-star" style="color:var(--green-mid);width:20px"></i> Reseñas</a>
     <a href="https://wa.me/529681047000" target="_blank" class="drawer-wp"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
 </div>
 
-<!-- WP FLOAT -->
-<a href="https://wa.me/529681047000" target="_blank" class="wp-float" title="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<a href="https://wa.me/529681047000" target="_blank" class="wp-float"><i class="fab fa-whatsapp"></i></a>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -422,20 +300,12 @@
         <div class="hero-text">
             <div class="hero-badge"><i class="fas fa-leaf"></i> Nutrióloga · Emprendedora Digital</div>
             <h1 class="hero-title">Tu salud<br><span>comienza aquí</span></h1>
-            <p class="hero-sub">
-                Hola, soy <strong>Ilhiana Vallecillo</strong>. Te acompaño hacia una nutrición real y sostenible — y también te enseño a construir un negocio propio que cambie tu vida.
-            </p>
+            <p class="hero-sub">Hola, soy <strong>Ilhiana Vallecillo</strong>. Te acompaño hacia una nutrición real y sostenible — y también te enseño a construir un negocio propio que cambie tu vida.</p>
             <div class="hero-actions">
-                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20interesa%20una%20consulta%20de%20nutrici%C3%B3n" target="_blank" class="btn-primary">
-                    <i class="fab fa-whatsapp"></i> Agendar consulta
-                </a>
-                <a href="#menu" class="btn-secondary">
-                    Ver menú <i class="fas fa-arrow-down"></i>
-                </a>
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20interesa%20una%20consulta" target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> Agendar consulta</a>
+                <a href="#menu" class="btn-secondary">Ver menú <i class="fas fa-arrow-down"></i></a>
             </div>
         </div>
-
-        <!-- PROFILE CARD -->
         <div class="hero-card">
             <div class="profile-photo-wrap">
                 <div class="profile-photo-ring"></div>
@@ -445,36 +315,16 @@
             </div>
             <div class="profile-name">Ilhiana Vallecillo</div>
             <div class="profile-handle">@ilhianavallecillorn</div>
-            <div class="profile-bio">
-                🥗 Nutrióloga certificada<br>
-                🍵 El Rinconcito del Té<br>
-                🌿 Distribuidora Red Natura<br>
-                📍 Chiapas, México
-            </div>
+            <div class="profile-bio">🥗 Nutrióloga certificada<br>🍵 El Rinconcito del Té<br>🌿 Distribuidora Red Natura<br>📍 Chiapas, México</div>
             <div class="profile-stats">
-                <div class="stat-item">
-                    <div class="stat-num">+100</div>
-                    <div class="stat-label">Clientes</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">4</div>
-                    <div class="stat-label">Servicios</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">100%</div>
-                    <div class="stat-label">Natural</div>
-                </div>
+                <div class="stat-item"><div class="stat-num">+100</div><div class="stat-label">Clientes</div></div>
+                <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Servicios</div></div>
+                <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Natural</div></div>
             </div>
             <div class="profile-social">
-                <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="social-pill social-ig">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="social-pill social-fb">
-                    <i class="fab fa-facebook"></i> Personal
-                </a>
-                <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="social-pill social-fb2">
-                    <i class="fab fa-facebook"></i> Rinconcito
-                </a>
+                <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="social-pill social-ig"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="social-pill social-fb"><i class="fab fa-facebook"></i> Personal</a>
+                <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="social-pill social-fb"><i class="fab fa-facebook"></i> Rinconcito</a>
             </div>
         </div>
     </div>
@@ -487,26 +337,10 @@
         <h2 class="section-title">Mis servicios</h2>
         <p class="section-desc">Soluciones integrales para tu salud y tu libertad financiera.</p>
         <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
-                <div class="service-title">Consultas de Nutrición</div>
-                <div class="service-desc">Evaluación personalizada de tu estado nutricional y hábitos para diseñar la estrategia ideal para tu cuerpo.</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-utensils"></i></div>
-                <div class="service-title">Planes de Alimentación</div>
-                <div class="service-desc">Menús 100% personalizados según tus gustos, horarios y metas: peso, músculo o simplemente sentirte mejor.</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-leaf"></i></div>
-                <div class="service-title">Productos Red Natura</div>
-                <div class="service-desc">Suplementos y productos naturales de calidad. Venta y asesoría personalizada para complementar tu nutrición.</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-rocket"></i></div>
-                <div class="service-title">Mentoría de Negocio Digital</div>
-                <div class="service-desc">Construye tu propio negocio desde cero, con ingresos recurrentes y la libertad de trabajar desde donde quieras.</div>
-            </div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-stethoscope"></i></div><div class="service-title">Consultas de Nutrición</div><div class="service-desc">Evaluación personalizada de tu estado nutricional para diseñar la estrategia ideal para tu cuerpo.</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-utensils"></i></div><div class="service-title">Planes de Alimentación</div><div class="service-desc">Menús 100% personalizados según tus gustos, horarios y metas de salud.</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-leaf"></i></div><div class="service-title">Productos Red Natura</div><div class="service-desc">Suplementos y productos naturales de calidad. Venta y asesoría personalizada.</div></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><div class="service-title">Mentoría de Negocio Digital</div><div class="service-desc">Construye tu propio negocio desde cero con ingresos recurrentes y libertad total.</div></div>
         </div>
     </div>
 </section>
@@ -518,234 +352,80 @@
             <div>
                 <div class="menu-brand-badge"><i class="fas fa-mug-hot"></i> El Rinconcito del Té</div>
                 <h2 class="section-title">Nuestro menú</h2>
-                <p class="section-desc" style="margin-bottom:0">Comida real, nutritiva y deliciosa. Todo preparado con amor e ingredientes naturales.</p>
+                <p class="section-desc" style="margin-bottom:0">Comida real, nutritiva y deliciosa. Todo preparado con amor.</p>
             </div>
-            <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="btn-secondary" style="align-self:flex-end;white-space:nowrap">
-                <i class="fab fa-facebook"></i> Ver Facebook
-            </a>
+            <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="btn-secondary" style="align-self:flex-end;white-space:nowrap"><i class="fab fa-facebook"></i> Ver Facebook</a>
         </div>
-
-        <!-- TABS -->
-        <div class="menu-tabs" role="tablist">
-            <button class="menu-tab active" onclick="showCategory('tes')" role="tab">🍵 Tés</button>
-            <button class="menu-tab" onclick="showCategory('jugos')" role="tab">🥤 Jugos Detox</button>
-            <button class="menu-tab" onclick="showCategory('smoothies')" role="tab">🥛 Smoothies</button>
-            <button class="menu-tab" onclick="showCategory('ensaladas')" role="tab">🥗 Ensaladas</button>
-            <button class="menu-tab" onclick="showCategory('platillos')" role="tab">🍽️ Platillos</button>
-        </div>
-
-        <!-- TÉS -->
-        <div class="menu-category active" id="cat-tes">
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍵</div>
-                <div class="menu-item-name">Té Verde Detox</div>
-                <div class="menu-item-desc">Antioxidante natural, acelera el metabolismo y depura el organismo.</div>
-                <div class="menu-item-tag">Detox</div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-slider" data-slider>
+                    <div class="food-slider-track"><img src="assets/ensalada_basica.png" alt="Ensalada Basica"><img src="assets/ensalada_basica2.png" alt="Ensalada Basica 2"></div>
+                    <div class="food-dots"><button class="food-dot active" data-dot="0"></button><button class="food-dot" data-dot="1"></button></div>
+                </div>
+                <div class="food-card-body">
+                    <div class="food-card-top"><div class="food-name">Ensalada Basica</div><div class="food-price">$130</div></div>
+                    <div class="food-desc">Lechuga mixta, pollo a la plancha, zanahoria rallada, semillas de girasol, crotones y aderezo de la casa.</div>
+                    <a href="https://wa.me/529681047000?text=Hola%2C%20quiero%20pedir%20la%20Ensalada%20B%C3%A1sica" target="_blank" class="food-order"><i class="fab fa-whatsapp"></i> Pedir</a>
+                </div>
             </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌺</div>
-                <div class="menu-item-name">Té de Jamaica & Jengibre</div>
-                <div class="menu-item-desc">Antiinflamatorio, diurético y rico en vitamina C. Frío o caliente.</div>
-                <div class="menu-item-tag">Antiinflamatorio</div>
+            <div class="food-card">
+                <div class="food-slider" data-slider>
+                    <div class="food-slider-track"><img src="assets/sandwich_pechuga_o_atun.png" alt="Sandwich"><img src="assets/sandwich_pechuga_o_atun2.png" alt="Sandwich 2"></div>
+                    <div class="food-dots"><button class="food-dot active" data-dot="0"></button><button class="food-dot" data-dot="1"></button></div>
+                </div>
+                <div class="food-card-body">
+                    <div class="food-card-top"><div class="food-name">Sandwich de Pechuga o Atun</div><div class="food-price">$145</div></div>
+                    <div class="food-desc">Pan de semilla tostado con pechuga o atun, acompanado de fruta fresca, granola, yogurt y jugo verde detox.</div>
+                    <a href="https://wa.me/529681047000?text=Hola%2C%20quiero%20pedir%20el%20Sandwich" target="_blank" class="food-order"><i class="fab fa-whatsapp"></i> Pedir</a>
+                </div>
             </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌙</div>
-                <div class="menu-item-name">Infusión Relajante</div>
-                <div class="menu-item-desc">Manzanilla, lavanda y menta. Para relajarte y dormir mejor.</div>
-                <div class="menu-item-tag">Relajante</div>
+            <div class="food-card">
+                <div class="food-slider" data-slider>
+                    <div class="food-slider-track"><img src="assets/ramen_saludable_camaron.png" alt="Ramen Camaron"><img src="assets/ramen_saludable_camaron2.png" alt="Ramen Camaron 2"></div>
+                    <div class="food-dots"><button class="food-dot active" data-dot="0"></button><button class="food-dot" data-dot="1"></button></div>
+                </div>
+                <div class="food-card-body">
+                    <div class="food-card-top"><div class="food-name">Ramen Saludable de Camaron</div><div class="food-price">$170</div></div>
+                    <div class="food-desc">Ramen con camaron, huevo marinado, noodles, cebolla morada, aguacate y cilantro. No te arrepentiras de probarlo.</div>
+                    <a href="https://wa.me/529681047000?text=Hola%2C%20quiero%20pedir%20el%20Ramen%20de%20Camar%C3%B3n" target="_blank" class="food-order"><i class="fab fa-whatsapp"></i> Pedir</a>
+                </div>
             </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🔥</div>
-                <div class="menu-item-name">Té Quema Grasa</div>
-                <div class="menu-item-desc">Mezcla especial de plantas que estimulan el metabolismo naturalmente.</div>
-                <div class="menu-item-tag">Adelgazante</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍋</div>
-                <div class="menu-item-name">Té de Limón & Cúrcuma</div>
-                <div class="menu-item-desc">Potente antiinflamatorio y depurativo. Ideal para comenzar el día.</div>
-                <div class="menu-item-tag">Depurativo</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌿</div>
-                <div class="menu-item-name">Té Digestivo</div>
-                <div class="menu-item-desc">Hinojo, anís y hierbabuena. Alivia la inflamación abdominal después de comer.</div>
-                <div class="menu-item-tag">Digestivo</div>
+            <div class="food-card">
+                <div class="food-slider" data-slider>
+                    <div class="food-slider-track"><img src="assets/ramen_saludable.png" alt="Ramen Saludable" onerror="this.parentElement.style.background='var(--green-pale)';this.style.display='none'"></div>
+                </div>
+                <div class="food-card-body">
+                    <div class="food-card-top"><div class="food-name">Ramen Saludable</div><div class="food-price">$150</div></div>
+                    <div class="food-desc">Ramen con pollo a la plancha, huevo marinado, cebolla de cambray y ajonjoli negro. Rico en proteina y bajo en grasa.</div>
+                    <a href="https://wa.me/529681047000?text=Hola%2C%20quiero%20pedir%20el%20Ramen%20Saludable" target="_blank" class="food-order"><i class="fab fa-whatsapp"></i> Pedir</a>
+                </div>
             </div>
         </div>
-
-        <!-- JUGOS -->
-        <div class="menu-category" id="cat-jugos">
-            <div class="menu-item">
-                <div class="menu-item-emoji">💚</div>
-                <div class="menu-item-name">Jugo Verde Detox</div>
-                <div class="menu-item-desc">Espinaca, pepino, limón, manzana verde y jengibre. El clásico depurativo.</div>
-                <div class="menu-item-tag">Detox</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">❤️</div>
-                <div class="menu-item-name">Jugo Antioxidante</div>
-                <div class="menu-item-desc">Betabel, zanahoria, naranja y limón. Rico en hierro y vitaminas.</div>
-                <div class="menu-item-tag">Energizante</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌅</div>
-                <div class="menu-item-name">Jugo Energético</div>
-                <div class="menu-item-desc">Piña, cúrcuma, jengibre y naranja. Perfecta para antes de ejercitarte.</div>
-                <div class="menu-item-tag">Pre-workout</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍊</div>
-                <div class="menu-item-name">Agua de Jamaica Natural</div>
-                <div class="menu-item-desc">Preparada sin azúcar refinada. Diurética, refrescante y baja en calorías.</div>
-                <div class="menu-item-tag">Sin azúcar</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🫐</div>
-                <div class="menu-item-name">Jugo de Frutos Rojos</div>
-                <div class="menu-item-desc">Fresa, arándano y mora. Alto en antioxidantes y vitamina C.</div>
-                <div class="menu-item-tag">Antioxidante</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥕</div>
-                <div class="menu-item-name">Zanahoria & Cúrcuma</div>
-                <div class="menu-item-desc">Antiinflamatorio natural. Fortalece el sistema inmune y mejora la piel.</div>
-                <div class="menu-item-tag">Antiinflamatorio</div>
-            </div>
-        </div>
-
-        <!-- SMOOTHIES -->
-        <div class="menu-category" id="cat-smoothies">
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌴</div>
-                <div class="menu-item-name">Smoothie Tropical</div>
-                <div class="menu-item-desc">Mango, piña, coco y plátano. Cremoso, refrescante y lleno de energía.</div>
-                <div class="menu-item-tag">Popular</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">💪</div>
-                <div class="menu-item-name">Smoothie Proteico</div>
-                <div class="menu-item-desc">Plátano, avena, leche de almendras y proteína natural. Ideal post-entreno.</div>
-                <div class="menu-item-tag">Proteico</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥬</div>
-                <div class="menu-item-name">Smoothie Verde</div>
-                <div class="menu-item-desc">Espinaca, plátano, manzana y leche de coco. Nutritivo y delicioso.</div>
-                <div class="menu-item-tag">Detox</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍓</div>
-                <div class="menu-item-name">Smoothie de Frutos Rojos</div>
-                <div class="menu-item-desc">Fresa, frambuesa, yogur natural y miel. Antioxidante y cremoso.</div>
-                <div class="menu-item-tag">Antioxidante</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍫</div>
-                <div class="menu-item-name">Smoothie Chocolate Saludable</div>
-                <div class="menu-item-desc">Cacao puro, plátano, leche de almendras. El placer sin culpa.</div>
-                <div class="menu-item-tag">Sin culpa</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🫚</div>
-                <div class="menu-item-name">Smoothie Aguacate & Limón</div>
-                <div class="menu-item-desc">Aguacate, limón, espinaca y pepino. Grasas saludables para tu piel.</div>
-                <div class="menu-item-tag">Omega 3</div>
-            </div>
-        </div>
-
-        <!-- ENSALADAS -->
-        <div class="menu-category" id="cat-ensaladas">
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥗</div>
-                <div class="menu-item-name">Ensalada Caesar Saludable</div>
-                <div class="menu-item-desc">Lechuga romana, pollo a la plancha, aderezo light y crotones integrales.</div>
-                <div class="menu-item-tag">Clásica</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🫙</div>
-                <div class="menu-item-name">Bowl de Quinoa</div>
-                <div class="menu-item-desc">Quinoa, vegetales de temporada, aguacate y aderezo de limón. Alta en proteína vegetal.</div>
-                <div class="menu-item-tag">Vegana</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🐟</div>
-                <div class="menu-item-name">Bowl de Aguacate & Atún</div>
-                <div class="menu-item-desc">Atún natural, aguacate, jitomate, cebolla morada y limón. Omega 3 y proteína.</div>
-                <div class="menu-item-tag">Alto proteína</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🫒</div>
-                <div class="menu-item-name">Ensalada Mediterránea</div>
-                <div class="menu-item-desc">Jitomate, pepino, queso panela, aceitunas y orégano con aceite de oliva.</div>
-                <div class="menu-item-tag">Light</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥑</div>
-                <div class="menu-item-name">Ensalada Detox</div>
-                <div class="menu-item-desc">Espinaca, betabel, zanahoria rallada, semillas de girasol y aderezo natural.</div>
-                <div class="menu-item-tag">Detox</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍗</div>
-                <div class="menu-item-name">Ensalada de Pollo & Mango</div>
-                <div class="menu-item-desc">Pechuga a la plancha, mango, lechuga mixta y aderezo de yogur con limón.</div>
-                <div class="menu-item-tag">Especial</div>
-            </div>
-        </div>
-
-        <!-- PLATILLOS -->
-        <div class="menu-category" id="cat-platillos">
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥖</div>
-                <div class="menu-item-name">Baguette de Pavo & Vegetales</div>
-                <div class="menu-item-desc">Pan integral, pechuga de pavo, lechuga, jitomate, aguacate y mostaza light.</div>
-                <div class="menu-item-tag">Popular</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🌯</div>
-                <div class="menu-item-name">Wrap Integral de Pollo</div>
-                <div class="menu-item-desc">Tortilla integral, pollo a la plancha, verduras y salsa de yogur. Práctico y nutritivo.</div>
-                <div class="menu-item-tag">Práctico</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥚</div>
-                <div class="menu-item-name">Tostadas de Aguacate & Huevo</div>
-                <div class="menu-item-desc">Pan integral tostado, aguacate, huevo pochado, sal de mar y chile. Desayuno estrella.</div>
-                <div class="menu-item-tag">Desayuno</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🍚</div>
-                <div class="menu-item-name">Bowl de Arroz Integral</div>
-                <div class="menu-item-desc">Arroz integral, pollo a la plancha, vegetales salteados y salsa teriyaki natural.</div>
-                <div class="menu-item-tag">Completo</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🫔</div>
-                <div class="menu-item-name">Quesadilla Saludable</div>
-                <div class="menu-item-desc">Tortilla integral, pechuga, espinaca y queso panela. Sin aceite, a la plancha.</div>
-                <div class="menu-item-tag">Sin aceite</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-emoji">🥣</div>
-                <div class="menu-item-name">Bowl de Avena Caliente</div>
-                <div class="menu-item-desc">Avena integral, leche de almendras, plátano, canela y miel natural. Desayuno nutritivo.</div>
-                <div class="menu-item-tag">Desayuno</div>
-            </div>
-        </div>
-
-        <!-- CTA MENU -->
         <div class="menu-cta">
-            <p>¿Antojaste algo? Escríbenos por WhatsApp para conocer disponibilidad, precios y hacer tu pedido. ¡También hacemos combos especiales!</p>
-            <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20interesa%20el%20men%C3%BA%20del%20Rinconcito%20del%20T%C3%A9%20%F0%9F%8D5" target="_blank" class="btn-primary" style="display:inline-flex;">
-                <i class="fab fa-whatsapp"></i> Hacer mi pedido
-            </a>
+            <p>Proximamente mas opciones. Escribe por WhatsApp para conocer disponibilidad o pedir tu combo.</p>
+            <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20interesa%20el%20men%C3%BA" target="_blank" class="btn-primary" style="display:inline-flex;"><i class="fab fa-whatsapp"></i> Ver menu completo</a>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="section" id="blog">
+    <div class="container">
+        <div class="section-row-header">
+            <div>
+                <div class="section-label">Actualidad</div>
+                <h2 class="section-title">Blog & Noticias</h2>
+                <p class="section-desc" style="margin-bottom:0">Lo último de Ilhiana — nuevos productos, consejos de nutrición, actividades y más.</p>
+            </div>
+        </div>
+        <div class="blog-scroll" id="blogGrid">
+            <div class="blog-empty" id="blogEmpty">Cargando publicaciones...</div>
         </div>
     </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section" id="sobre-mi">
+<section class="section section-alt" id="sobre-mi">
     <div class="container">
         <div class="about-inner">
             <div class="about-visual">
@@ -753,38 +433,33 @@
                 <div class="tagline">Nutrición · Salud · Negocio</div>
                 <div class="sub">Chiapas, México</div>
                 <div class="about-tags">
-                    <span class="about-tag">Nutrióloga</span>
-                    <span class="about-tag">El Rinconcito del Té</span>
-                    <span class="about-tag">Red Natura</span>
-                    <span class="about-tag">Emprendedora</span>
-                    <span class="about-tag">Chiapas</span>
+                    <span class="about-tag">Nutrióloga</span><span class="about-tag">El Rinconcito del Té</span>
+                    <span class="about-tag">Red Natura</span><span class="about-tag">Emprendedora</span>
                 </div>
             </div>
             <div class="about-content">
                 <div class="section-label">Sobre mí</div>
                 <h2 class="section-title">Más que una nutrióloga</h2>
                 <ul class="pills-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span><strong>Nutrióloga certificada</strong> que acompaña a sus clientes a lograr sus metas de salud de forma sostenible, sin dietas extremas.</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span><strong>Fundadora de El Rinconcito del Té</strong>, un negocio de comida saludable con tés, jugos, smoothies, ensaladas y más.</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span><strong>Distribuidora Red Natura</strong>, con productos naturales de calidad para complementar tu bienestar.</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span><strong>Emprendedora digital</strong> que enseña a otras personas a construir su propio negocio y alcanzar la libertad financiera.</span>
-                    </li>
+                    <li><i class="fas fa-check-circle"></i><span><strong>Nutrióloga certificada</strong> que acompaña a sus clientes a lograr sus metas de salud de forma sostenible, sin dietas extremas.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span><strong>Fundadora de El Rinconcito del Té</strong>, un negocio de comida saludable con tés, jugos, smoothies, ensaladas y más.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span><strong>Distribuidora Red Natura</strong>, con productos naturales de calidad para complementar tu bienestar.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span><strong>Emprendedora digital</strong> que enseña a otras personas a construir su propio negocio y alcanzar la libertad financiera.</span></li>
                 </ul>
-                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20trabajo" target="_blank" class="btn-secondary" style="width:fit-content;">
-                    <i class="fab fa-whatsapp"></i> Conoce más
-                </a>
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20quiero%20saber%20m%C3%A1s" target="_blank" class="btn-secondary" style="width:fit-content;"><i class="fab fa-whatsapp"></i> Conoce más</a>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATALOGO RED NATURA -->
+<section class="section" id="catalogo">
+    <div class="container">
+        <div class="section-label">Red Natura</div>
+        <h2 class="section-title">Catálogo de productos</h2>
+        <p class="section-desc">Suplementos y productos naturales de alta calidad. Asesoría personalizada incluida con tu compra.</p>
+        <div class="catalog-grid" id="catalogGrid">
+            <div class="catalog-empty" id="catalogEmpty">Cargando productos...</div>
         </div>
     </div>
 </section>
@@ -796,54 +471,51 @@
             <div class="contact-info">
                 <div class="section-label">Contacto</div>
                 <h2 class="section-title">¿Lista para empezar?</h2>
-                <p>Escríbeme y cuéntame tu objetivo — nutrición, pedido del Rinconcito, productos Red Natura o negocio digital. Estoy aquí para ayudarte.</p>
+                <p>Escríbeme y cuéntame tu objetivo — nutrición, pedido del Rinconcito, productos Red Natura o negocio digital.</p>
                 <div class="contact-channels">
-                    <a href="https://wa.me/529681047000" target="_blank" class="contact-channel">
-                        <div class="channel-icon ch-wp"><i class="fab fa-whatsapp"></i></div>
-                        <div class="channel-text">
-                            <div class="ch-title">WhatsApp Business</div>
-                            <div class="ch-val">+52 968 104 7000</div>
-                        </div>
-                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
-                    </a>
-                    <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="contact-channel">
-                        <div class="channel-icon ch-ig"><i class="fab fa-instagram"></i></div>
-                        <div class="channel-text">
-                            <div class="ch-title">Instagram</div>
-                            <div class="ch-val">@ilhianavallecillorn</div>
-                        </div>
-                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
-                    </a>
-                    <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="contact-channel">
-                        <div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div>
-                        <div class="channel-text">
-                            <div class="ch-title">Facebook Personal</div>
-                            <div class="ch-val">Ilhiana Vallecillo</div>
-                        </div>
-                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
-                    </a>
-                    <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="contact-channel">
-                        <div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div>
-                        <div class="channel-text">
-                            <div class="ch-title">El Rinconcito del Té</div>
-                            <div class="ch-val">Página del negocio</div>
-                        </div>
-                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
-                    </a>
+                    <a href="https://wa.me/529681047000" target="_blank" class="contact-channel"><div class="channel-icon ch-wp"><i class="fab fa-whatsapp"></i></div><div class="channel-text"><div class="ch-title">WhatsApp Business</div><div class="ch-val">+52 968 104 7000</div></div><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i></a>
+                    <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="contact-channel"><div class="channel-icon ch-ig"><i class="fab fa-instagram"></i></div><div class="channel-text"><div class="ch-title">Instagram</div><div class="ch-val">@ilhianavallecillorn</div></div><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i></a>
+                    <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="contact-channel"><div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div><div class="channel-text"><div class="ch-title">Facebook Personal</div><div class="ch-val">Ilhiana Vallecillo</div></div><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i></a>
+                    <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="contact-channel"><div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div><div class="channel-text"><div class="ch-title">El Rinconcito del Té</div><div class="ch-val">Página del negocio</div></div><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i></a>
                 </div>
             </div>
             <div class="contact-cta-box">
                 <h3>¡Hablemos hoy!</h3>
                 <p>Una consulta puede cambiar tu vida. Da el primer paso hacia tu bienestar y tu libertad financiera.</p>
-                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank" class="btn-white">
-                    <i class="fab fa-whatsapp"></i> Escribir ahora
-                </a>
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank" class="btn-white"><i class="fab fa-whatsapp"></i> Escribir ahora</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- REVIEWS -->
+<section class="section section-alt" id="resenas">
+    <div class="container">
+        <div class="section-label">Opiniones</div>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-desc">Experiencias reales de personas que ya probaron nuestros platillos y servicios.</p>
+        <div class="reviews-grid" id="reviewsGrid">
+            <div style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:2rem" id="reviewsLoading">Cargando reseñas...</div>
+        </div>
+        <div class="review-form-wrap">
+            <h3>Deja tu reseña</h3>
+            <p>¿Ya probaste algo del Rinconcito o tuviste una consulta? Cuéntanos tu experiencia.</p>
+            <div class="star-picker">
+                <input type="radio" name="stars" id="s5" value="5"><label for="s5">★</label>
+                <input type="radio" name="stars" id="s4" value="4"><label for="s4">★</label>
+                <input type="radio" name="stars" id="s3" value="3"><label for="s3">★</label>
+                <input type="radio" name="stars" id="s2" value="2"><label for="s2">★</label>
+                <input type="radio" name="stars" id="s1" value="1"><label for="s1">★</label>
+            </div>
+            <div class="form-field"><label for="reviewName">Tu nombre</label><input type="text" id="reviewName" placeholder="Ej: María García" maxlength="60"></div>
+            <div class="form-field"><label for="reviewText">Tu comentario</label><textarea id="reviewText" rows="4" placeholder="Cuéntanos tu experiencia..." maxlength="400"></textarea></div>
+            <button class="form-submit" onclick="submitReview()"><i class="fas fa-paper-plane"></i> Publicar reseña</button>
+            <div class="review-success" id="reviewSuccess">¡Gracias por tu reseña! Será publicada tras una breve revisión.</div>
+            <p class="review-note">Las reseñas se publican tras revisión para garantizar su autenticidad.</p>
+        </div>
+    </div>
+</section>
+
 <footer>
     <p>© 2026 Ilhiana Vallecillo &nbsp;·&nbsp; El Rinconcito del Té &nbsp;·&nbsp; Chiapas, México</p>
     <p style="margin-top:0.6rem;">
@@ -854,30 +526,376 @@
     </p>
 </footer>
 
-<script>
-    // Hamburger menu
-    const burger = document.getElementById('burger');
-    const drawer = document.getElementById('drawer');
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('open');
-        drawer.classList.toggle('open');
-    });
-    function closeDrawer() {
-        burger.classList.remove('open');
-        drawer.classList.remove('open');
-    }
-    // Close on outside click
-    document.addEventListener('click', e => {
-        if (!burger.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
-    });
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose"><i class="fas fa-times"></i></button>
+    <div class="lightbox-img-wrap">
+        <button class="lightbox-arrow lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+        <div class="lightbox-track" id="lbTrack"></div>
+        <button class="lightbox-arrow lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="lightbox-footer"><div id="lbDots" style="display:flex;gap:8px;"></div><span class="lightbox-counter" id="lbCounter"></span></div>
+</div>
 
-    // Menu tabs
-    function showCategory(id) {
-        document.querySelectorAll('.menu-category').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
-        document.getElementById('cat-' + id).classList.add('active');
-        event.currentTarget.classList.add('active');
+<!-- POST MODAL -->
+<div class="post-modal" id="postModal">
+    <div class="post-modal-inner">
+        <button class="post-modal-close" onclick="closePostModal()"><i class="fas fa-times"></i></button>
+        <div id="postModalContent"></div>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDSUCgrP8gDG1hDDbh8HKpC2WCHCc18DXc",
+    authDomain: "ilhiana-web.firebaseapp.com",
+    projectId: "ilhiana-web",
+    storageBucket: "ilhiana-web.firebasestorage.app",
+    messagingSenderId: "264432852320",
+    appId: "1:264432852320:web:8af3b5319e906da2cf1205",
+    measurementId: "G-76ZYNFN84G"
+};
+
+const app = initializeApp(firebaseConfig);
+getAnalytics(app);
+const db = getFirestore(app);
+
+// ── Hamburger ──
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+window.closeDrawer = () => { burger.classList.remove('open'); drawer.classList.remove('open'); };
+document.addEventListener('click', e => { if (!burger.contains(e.target) && !drawer.contains(e.target)) window.closeDrawer(); });
+
+// ── Food card sliders ──
+document.querySelectorAll('[data-slider]').forEach(slider => {
+    const track = slider.querySelector('.food-slider-track');
+    const dots = slider.querySelectorAll('.food-dot');
+    if (!track) return;
+    const total = track.children.length;
+    let cur = 0;
+    function goTo(n) {
+        cur = (n + total) % total;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
     }
+    dots.forEach(dot => dot.addEventListener('click', e => { e.stopPropagation(); goTo(+dot.dataset.dot); }));
+    let startX = 0;
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => { const diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 40) goTo(diff > 0 ? cur + 1 : cur - 1); });
+    slider.addEventListener('click', e => { if (e.target.closest('.food-dot')) return; openLightbox([...track.querySelectorAll('img')].map(i => i.src), cur); });
+});
+
+// ── Lightbox ──
+const lb = document.getElementById('lightbox');
+const lbTrack = document.getElementById('lbTrack');
+const lbDots = document.getElementById('lbDots');
+const lbCounter = document.getElementById('lbCounter');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+let lbImages = [], lbCur = 0;
+
+function openLightbox(imgs, startIndex) {
+    lbImages = imgs.filter(Boolean);
+    if (!lbImages.length) return;
+    lbTrack.innerHTML = lbImages.map(src => `<img src="${src}" alt="">`).join('');
+    lbDots.innerHTML = lbImages.length > 1 ? lbImages.map((_, i) => `<button class="lightbox-dot" data-i="${i}"></button>`).join('') : '';
+    lbDots.querySelectorAll('.lightbox-dot').forEach(d => d.addEventListener('click', () => lbGoTo(+d.dataset.i)));
+    lbPrev.classList.toggle('hidden', lbImages.length < 2);
+    lbNext.classList.toggle('hidden', lbImages.length < 2);
+    lbGoTo(startIndex || 0, false);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function lbGoTo(n, animate = true) {
+    lbCur = (n + lbImages.length) % lbImages.length;
+    lbTrack.style.transition = animate ? 'transform 0.35s cubic-bezier(.4,0,.2,1)' : 'none';
+    lbTrack.style.transform = `translateX(-${lbCur * 100}%)`;
+    lbDots.querySelectorAll('.lightbox-dot').forEach((d, i) => d.classList.toggle('active', i === lbCur));
+    lbCounter.textContent = lbImages.length > 1 ? `${lbCur + 1} / ${lbImages.length}` : '';
+}
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+lbPrev.addEventListener('click', () => lbGoTo(lbCur - 1));
+lbNext.addEventListener('click', () => lbGoTo(lbCur + 1));
+let lbStartX = 0;
+lbTrack.addEventListener('touchstart', e => { lbStartX = e.touches[0].clientX; }, { passive: true });
+lbTrack.addEventListener('touchend', e => { const diff = lbStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 40) lbGoTo(diff > 0 ? lbCur + 1 : lbCur - 1); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closePostModal(); } if (e.key === 'ArrowLeft') lbGoTo(lbCur - 1); if (e.key === 'ArrowRight') lbGoTo(lbCur + 1); });
+
+// ── Post modal ──
+window.closePostModal = function() {
+    document.getElementById('postModal').classList.remove('open');
+    document.body.style.overflow = '';
+};
+document.getElementById('postModal').addEventListener('click', e => { if (e.target === document.getElementById('postModal')) window.closePostModal(); });
+
+function getYouTubeId(url) {
+    if (!url) return null;
+    const m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&\n?/]+)/);
+    if (m) return m[1];
+    if (/^[a-zA-Z0-9_-]{11}$/.test(url.trim())) return url.trim();
+    return null;
+}
+
+function ytThumbHTML(id) {
+    return `<div class="yt-thumb-wrap" onclick="window.open('https://www.youtube.com/watch?v=${id}','_blank')">
+        <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="Video YouTube">
+        <div class="yt-play-btn"><i class="fa-solid fa-play"></i></div>
+    </div>`;
+}
+
+function getPostMedia(post) {
+    if (post.media && post.media.length) return post.media;
+    const items = [];
+    if (post.imageUrl) items.push({ type: 'image', url: post.imageUrl });
+    if (post.videoUrl) items.push({ type: 'video', url: post.videoUrl });
+    return items;
+}
+
+function mediaSlideHTML(m) {
+    if (m.type === 'image') {
+        return `<div class="pm-slide"><img src="${m.url}" alt="foto" loading="lazy"></div>`;
+    }
+    const id = getYouTubeId(m.url);
+    if (id) {
+        return `<div class="pm-slide"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe></div>`;
+    }
+    return '';
+}
+
+let pmCurrent = 0;
+let pmTotal = 0;
+
+function openPostModal(post) {
+    const media = getPostMedia(post);
+    pmCurrent = 0;
+    pmTotal = media.length;
+
+    let html = '';
+    // Collect YouTube IDs for fallback links (shown below slider)
+    const ytIds = media.filter(m => m.type === 'video').map(m => getYouTubeId(m.url)).filter(Boolean);
+
+    if (media.length === 0) {
+        // no media
+    } else if (media.length === 1) {
+        const m = media[0];
+        if (m.type === 'image') {
+            html = `<img src="${m.url}" class="post-modal-img" alt="${post.title}" loading="lazy">`;
+        } else {
+            const id = getYouTubeId(m.url);
+            if (id) html = `<div class="post-modal-video"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe></div>`;
+        }
+    } else {
+        const slides = media.map(m => mediaSlideHTML(m)).filter(Boolean).join('');
+        const dots = media.map((_, i) => `<button class="pm-dot${i===0?' active':''}" onclick="pmGoTo(${i})"></button>`).join('');
+        html = `<div class="pm-slider" id="pmSlider">
+            <button class="pm-arrow prev" onclick="pmGoTo(pmCurrent-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="pm-slides"><div class="pm-track" id="pmTrack">${slides}</div></div>
+            <button class="pm-arrow next" onclick="pmGoTo(pmCurrent+1)"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="pm-nav">${dots}</div>
+        </div>`;
+    }
+    // YouTube fallback links outside the slider
+    if (ytIds.length) {
+        html += ytIds.map(id => `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"
+            style="display:block;text-align:center;font-size:0.78rem;color:var(--text-light);padding:0.3rem 0;text-decoration:none">
+            <i class="fa-brands fa-youtube" style="color:#ff0000"></i> Ver en YouTube si el video no carga
+        </a>`).join('');
+    }
+
+    html += `<div class="post-modal-cat">${post.category || 'Noticias'}</div>`;
+    html += `<div class="post-modal-title">${post.title}</div>`;
+    html += `<div class="post-modal-date">${formatDate(post.date)}</div>`;
+    html += `<div class="post-modal-content">${post.content || ''}</div>`;
+    document.getElementById('postModalContent').innerHTML = html;
+    document.getElementById('postModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(pmInit);
+}
+
+function pmInit() {
+    const slidesEl = document.querySelector('.pm-slides');
+    const track = document.getElementById('pmTrack');
+    if (!slidesEl || !track) return;
+    const w = slidesEl.offsetWidth;
+    track.querySelectorAll('.pm-slide').forEach(s => s.style.width = w + 'px');
+}
+
+window.pmGoTo = function(n) {
+    pmCurrent = Math.max(0, Math.min(pmTotal - 1, n));
+    const track = document.getElementById('pmTrack');
+    const slidesEl = document.querySelector('.pm-slides');
+    if (track && slidesEl) {
+        const w = slidesEl.offsetWidth;
+        track.style.transform = `translateX(-${pmCurrent * w}px)`;
+    }
+    document.querySelectorAll('.pm-dot').forEach((d, i) => d.classList.toggle('active', i === pmCurrent));
+};
+
+function formatDate(ts) {
+    if (!ts) return '';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+// ── Load Blog ──
+window._blogPosts = [];
+async function loadBlog() {
+    const grid = document.getElementById('blogGrid');
+    try {
+        const snap = await getDocs(collection(db, 'posts'));
+        const posts = [];
+        snap.forEach(doc => { const d = doc.data(); if (d.published) posts.push({ id: doc.id, ...d }); });
+        posts.sort((a, b) => (b.date?.seconds || 0) - (a.date?.seconds || 0));
+        window._blogPosts = posts;
+
+        if (!posts.length) {
+            grid.innerHTML = '<div class="blog-empty">Próximamente publicaciones de Ilhiana...</div>';
+            return;
+        }
+        grid.innerHTML = posts.map((p, i) => {
+            const postMediaItems = getPostMedia(p);
+            const first = postMediaItems[0];
+            let mediaCover = '';
+            if (first) {
+                if (first.type === 'image') {
+                    mediaCover = `<img src="${first.url}" class="blog-card-img" alt="${p.title}" loading="lazy">`;
+                } else {
+                    const id = getYouTubeId(first.url);
+                    mediaCover = id ? ytThumbHTML(id) : `<div class="blog-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green-light)"><i class="fas fa-newspaper"></i></div>`;
+                }
+            } else {
+                mediaCover = `<div class="blog-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green-light)"><i class="fas fa-newspaper"></i></div>`;
+            }
+            const mediaCount = postMediaItems.length > 1 ? `<span style="position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.55);color:white;border-radius:20px;font-size:0.72rem;padding:0.2rem 0.55rem;font-weight:600"><i class="fa-solid fa-images"></i> ${postMediaItems.length}</span>` : '';
+            return `<div class="blog-card" onclick="openPost(_blogPosts[${i}])">
+                <div style="position:relative">${mediaCover}${mediaCount}</div>
+                <div class="blog-card-body">
+                    <div class="blog-cat">${p.category || 'Noticias'}</div>
+                    <div class="blog-title">${p.title}</div>
+                    <div class="blog-date">${formatDate(p.date)}</div>
+                    <div class="blog-excerpt">${p.content || ''}</div>
+                    <span class="blog-read">Leer más <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>`;
+        }).join('');
+    } catch (e) {
+        grid.innerHTML = '<div class="blog-empty">No se pudieron cargar las publicaciones.</div>';
+    }
+}
+
+window.openPost = function(p) {
+    openPostModal(p);
+};
+
+// ── Load Catalog ──
+async function loadCatalog() {
+    const grid = document.getElementById('catalogGrid');
+    try {
+        const snap = await getDocs(collection(db, 'catalog'));
+        const items = [];
+        snap.forEach(doc => { const d = doc.data(); if (d.available !== false) items.push({ id: doc.id, ...d }); });
+        items.sort((a, b) => (a.order || 99) - (b.order || 99));
+
+        if (!items.length) {
+            grid.innerHTML = '<div class="catalog-empty">Próximamente productos Red Natura disponibles.<br>Escríbeme por WhatsApp para asesoría personalizada.</div>';
+            return;
+        }
+        grid.innerHTML = items.map(item => {
+            const img = item.imageUrl
+                ? `<img src="${item.imageUrl}" class="catalog-img" alt="${item.name}">`
+                : `<div class="catalog-img-placeholder"><i class="fas fa-leaf"></i></div>`;
+            const price = item.price ? `<span class="catalog-price">$${item.price}</span>` : '';
+            const wpText = encodeURIComponent(`Hola Ilhiana, me interesa el producto: ${item.name}`);
+            return `<div class="catalog-card">
+                ${img}
+                <div class="catalog-body">
+                    ${item.category ? `<span class="catalog-badge">${item.category}</span>` : ''}
+                    <div class="catalog-name">${item.name}</div>
+                    <div class="catalog-desc">${item.description || ''}</div>
+                    <div class="catalog-footer">
+                        ${price}
+                        <a href="https://wa.me/529681047000?text=${wpText}" target="_blank" class="catalog-btn"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    } catch (e) {
+        grid.innerHTML = '<div class="catalog-empty">No se pudo cargar el catálogo.</div>';
+    }
+}
+
+// ── Load Reviews ──
+async function loadReviews() {
+    const grid = document.getElementById('reviewsGrid');
+    try {
+        const snap = await getDocs(collection(db, 'reviews'));
+        const reviews = [];
+        snap.forEach(doc => { const d = doc.data(); if (d.approved) reviews.push({ id: doc.id, ...d }); });
+        reviews.sort((a, b) => (b.date?.seconds || 0) - (a.date?.seconds || 0));
+
+        if (!reviews.length) {
+            grid.innerHTML = `
+                <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"El ramen de camarón esta increíble, nunca pensé que algo tan saludable pudiera ser tan rico."</div><div class="review-author"><div class="review-avatar">MG</div><div><div class="review-name">María G.</div><div class="review-date">Mayo 2026</div></div></div></div>
+                <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"El sandwich con fruta y jugo verde es mi desayuno de cada semana. Delicioso y lleno de energía."</div><div class="review-author"><div class="review-avatar">CL</div><div><div class="review-name">Carolina L.</div><div class="review-date">Mayo 2026</div></div></div></div>
+                <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Ilhiana me hizo mi plan de nutrición y en dos meses bajé 6 kilos sin pasar hambre. Super recomendada."</div><div class="review-author"><div class="review-avatar">JP</div><div><div class="review-name">Juan P.</div><div class="review-date">Abril 2026</div></div></div></div>`;
+            return;
+        }
+        grid.innerHTML = reviews.map(r => {
+            const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+            const initials = r.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+            return `<div class="review-card">
+                <div class="review-stars">${stars}</div>
+                <div class="review-text">"${r.text}"</div>
+                <div class="review-author">
+                    <div class="review-avatar">${initials}</div>
+                    <div><div class="review-name">${r.name}</div><div class="review-date">${formatDate(r.date)}</div></div>
+                </div>
+            </div>`;
+        }).join('');
+    } catch (e) {
+        document.getElementById('reviewsLoading').textContent = '';
+    }
+}
+
+// ── Submit Review ──
+window.submitReview = async function() {
+    const name = document.getElementById('reviewName').value.trim();
+    const text = document.getElementById('reviewText').value.trim();
+    const starsEl = document.querySelector('input[name="stars"]:checked');
+    if (!name) { alert('Por favor escribe tu nombre.'); return; }
+    if (!text) { alert('Por favor escribe tu comentario.'); return; }
+    if (!starsEl) { alert('Por favor selecciona una calificación.'); return; }
+
+    const btn = document.querySelector('.form-submit');
+    btn.disabled = true; btn.textContent = 'Enviando...';
+    try {
+        await addDoc(collection(db, 'reviews'), {
+            name, text, stars: +starsEl.value, approved: false, date: serverTimestamp()
+        });
+        document.getElementById('reviewName').value = '';
+        document.getElementById('reviewText').value = '';
+        document.querySelectorAll('input[name="stars"]').forEach(r => r.checked = false);
+        const success = document.getElementById('reviewSuccess');
+        success.style.display = 'block';
+        setTimeout(() => success.style.display = 'none', 5000);
+    } catch (e) {
+        alert('Hubo un error. Intenta de nuevo.');
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publicar reseña';
+};
+
+// Init
+loadBlog();
+loadCatalog();
+loadReviews();
 </script>
 
 </body>
