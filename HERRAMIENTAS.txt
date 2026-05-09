@@ -1,0 +1,101 @@
+HERRAMIENTAS USADAS EN EL PROYECTO - ILHIANA VALLECILLO
+========================================================
+
+HOSTING
+-------
+- GitHub Pages (actual)
+  URL: https://ilhianavallecillo.com
+  Admin: https://ilhianavallecillo.com/admin.html
+  URL legacy: https://salemwitchz.github.io/ilhiana-vallecillo/ (sigue funcionando)
+  Gratis, conectado al repo de GitHub
+
+- Netlify / Vercel / Cloudflare Pages (opciones futuras)
+  Gratis, permiten dominio propio personalizado
+
+
+BASE DE DATOS Y BACKEND
+------------------------
+- Firebase Firestore
+  Base de datos NoSQL en tiempo real
+  Almacena: reseñas, publicaciones del blog, catálogo Red Natura
+  Proyecto: ilhiana-web
+  Consola: https://console.firebase.google.com
+
+- Firebase Analytics (GA4)
+  Medición ID: G-76ZYNFN84G
+  Rastrea visitas, dispositivos, países, páginas más vistas
+  Se ve en la consola de Firebase → Analytics
+
+
+ANALÍTICAS Y COMPORTAMIENTO
+----------------------------
+- Microsoft Clarity
+  ID de proyecto: woata1xdu5
+  Panel: https://clarity.microsoft.com
+  Graba sesiones de usuarios, mapas de calor, clics
+  Gratis sin límite de tráfico
+
+- Uptime Robot
+  Panel: https://uptimerobot.com
+  Monitorea que la página esté activa 24/7
+  Envía alertas por email si la página cae
+  Email de alertas: rbarbarogeta17@gmail.com
+
+
+IMÁGENES
+---------
+- ImgBB
+  API Key: 66d6949f6092fdef9f3b630ef9bc3947
+  API: https://api.imgbb.com
+  Hosting gratuito de imágenes para el blog
+  Se sube directo desde el panel de admin
+
+
+FUENTES Y ESTILOS
+------------------
+- Google Fonts
+  Playfair Display (títulos)
+  Inter (texto general)
+
+- Font Awesome 6.5.0
+  Iconos en toda la página
+
+
+DOMINIO (PENDIENTE)
+--------------------
+- Opciones recomendadas para comprar dominio:
+  Porkbun: https://porkbun.com (más barato)
+  Namecheap: https://namecheap.com
+- Extensiones sugeridas: .com (~$10-12 USD/año), .mx (~$18-25 USD/año)
+- Ideas de dominio: ilhianavallecillo.com / ilhianavallecillo.mx
+
+
+REPOSITORIO
+-----------
+- GitHub
+  Repo: https://github.com/SalemWitchz/ilhiana-vallecillo
+  Rama principal: master
+
+
+ARCHIVOS DEL PROYECTO
+----------------------
+- index.html              → Página principal
+- admin.html              → Panel de administración (reseñas, blog, catálogo)
+- assets/                 → Fotos del menú y perfil
+- HERRAMIENTAS.txt        → Este archivo
+
+
+PENDIENTES / IDEAS
+------------------
+- Feed de Instagram en la web:
+  Idea: añadir una sección "Sígueme en Instagram" que muestre
+  los posts reales de @ilhianavallecillorn en un grid embed.
+  Implementación: ir a https://behold.so, crear cuenta gratis,
+  conectar la cuenta de Instagram, generar el widget embed y
+  pegar el código en index.html. No es posible sin esa autorización
+  porque la API de Instagram bloquea acceso externo sin OAuth.
+
+- Dominio personalizado: pendiente de comprar (ver sección DOMINIO)
+- Firebase Storage Rules: actualizar en Firebase Console para
+  permitir uploads desde el admin (allow read, write: if true
+  en paths blog/ y catalog/)

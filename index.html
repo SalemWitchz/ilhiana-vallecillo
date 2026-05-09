@@ -13,10 +13,23 @@
             --green-pale: #e8f5ee; --green-pale2: #f0faf4; --white: #ffffff;
             --text-dark: #1a2e1f; --text-mid: #4a6357; --text-light: #8aab97;
             --border: #d0e8da; --touch: 48px;
+            /* Paleta extendida */
+            --gold: #c9a84c; --gold-light: #e8c97a; --gold-pale: #fdf5e0;
+            --coral: #e07a5f; --coral-pale: #fdf0ec;
+            --cream: #fdfaf5;
+            --page-bg: #1b3d26;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--page-bg); font-size: 16px; }
+
+        /* VINE DECORATION */
+        .vine-strip { position: fixed; left: 0; top: 0; bottom: 0; width: 44px; pointer-events: none; z-index: 7; overflow: hidden; }
+        .vine-strip::before { content: ''; position: absolute; left: 20px; top: 4%; height: 92%; width: 2px; background: linear-gradient(to bottom, transparent 0%, rgba(77,184,122,0.45) 8%, rgba(45,134,83,0.55) 50%, rgba(77,184,122,0.45) 92%, transparent 100%); border-radius: 2px; }
+        .vl { position: absolute; font-size: 1rem; color: var(--green-light); opacity: 0.5; }
+        .vl:not(.vl-r) { left: 6px; transform: rotate(-40deg); }
+        .vl.vl-r { left: 20px; transform: rotate(50deg); }
+        @media(max-width: 900px) { .vine-strip { display: none; } }
 
         /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
@@ -51,7 +64,7 @@
         .btn-primary:active { opacity: 0.85; }
         .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--green-dark); padding: 0.85rem 1.6rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid var(--green-dark); transition: all 0.2s; min-height: var(--touch); }
         .btn-secondary:hover { background: var(--green-dark); color: white; }
-        .hero-card { background: white; border-radius: 24px; padding: 2rem; box-shadow: 0 16px 50px rgba(26,92,56,0.12); border: 1px solid var(--border); text-align: center; }
+        .hero-card { background: white; border-radius: 24px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.15); text-align: center; }
         .profile-photo-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 1rem; }
         .profile-photo-ring { position: absolute; inset: -4px; border-radius: 50%; background: linear-gradient(135deg, var(--green-mid), var(--green-light), #a8e6c3); }
         .profile-photo-ring-inner { position: absolute; inset: 4px; border-radius: 50%; background: white; overflow: hidden; }
@@ -68,12 +81,12 @@
         .social-fb { background: #1877F2; color: white; }
 
         /* SECTIONS */
-        .section { padding: 4rem 5%; }
-        .section-alt { background: var(--green-pale2); }
+        .section { padding: 4rem 5%; background: #1f4229; }
+        .section-alt { background: #192e1d; }
         .container { max-width: 1100px; margin: 0 auto; }
-        .section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green-mid); margin-bottom: 0.5rem; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.4rem); color: var(--green-dark); margin-bottom: 0.7rem; }
-        .section-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.4rem); color: rgba(255,255,255,0.95); margin-bottom: 0.7rem; }
+        .section-desc { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem; }
 
         /* SERVICES */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
@@ -88,7 +101,7 @@
         .menu-brand-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff8e6; color: #a0560a; border: 1px solid #f5d78e; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
         .food-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
         .food-card { background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
-        .food-slider { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--green-pale); cursor: zoom-in; }
+        .food-slider { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--green-pale); cursor: zoom-in; }
         .food-slider-track { display: flex; height: 100%; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
         .food-slider-track img { min-width: 100%; height: 100%; object-fit: cover; display: block; flex-shrink: 0; }
         .food-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
@@ -104,11 +117,13 @@
         .menu-cta p { color: #7a4a0a; font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
 
         /* BLOG */
-        .blog-scroll { display: flex; gap: 1.2rem; overflow-x: auto; padding-bottom: 0.8rem; scrollbar-width: none; -ms-overflow-style: none; }
-        .blog-scroll::-webkit-scrollbar { display: none; }
-        .blog-card { min-width: 270px; max-width: 300px; background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.2s; }
-        .blog-card:active { box-shadow: 0 6px 20px rgba(26,92,56,0.12); }
-        .blog-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--green-pale); }
+        .blog-grid { display: flex; overflow-x: auto; gap: 1.2rem; scroll-snap-type: x mandatory; padding-bottom: 0.8rem; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(77,184,122,0.3) transparent; }
+        .blog-grid::-webkit-scrollbar { height: 4px; }
+        .blog-grid::-webkit-scrollbar-thumb { background: rgba(77,184,122,0.3); border-radius: 4px; }
+        .blog-card { flex: 0 0 280px; scroll-snap-align: start; background: white; border-radius: 22px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.25s, transform 0.25s; }
+        .blog-card:hover { box-shadow: 0 14px 40px rgba(26,92,56,0.14); transform: translateY(-4px); }
+        .blog-card:active { box-shadow: 0 6px 20px rgba(26,92,56,0.12); transform: translateY(0); }
+        .blog-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--green-pale); }
         .blog-video-wrap { aspect-ratio: 16/9; background: #000; pointer-events: none; }
         .blog-video-wrap iframe { width: 100%; height: 100%; border: none; }
         .yt-thumb-wrap { position: relative; aspect-ratio: 16/9; cursor: pointer; overflow: hidden; border-radius: 12px 12px 0 0; background: #000; }
@@ -118,7 +133,7 @@
         .yt-play-btn i { width: 56px; height: 56px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; padding-left: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
         .yt-thumb-wrap:hover .yt-play-btn i { transform: scale(1.1); }
         .blog-card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
-        .blog-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--green-mid); letter-spacing: 0.06em; }
+        .blog-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--coral); letter-spacing: 0.06em; }
         .blog-title { font-weight: 700; font-size: 0.95rem; color: var(--green-dark); line-height: 1.35; }
         .blog-date { font-size: 0.72rem; color: var(--text-light); }
         .blog-excerpt { font-size: 0.83rem; color: var(--text-mid); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -134,7 +149,7 @@
         .post-modal-img { width: 100%; border-radius: 14px; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 1.2rem; display: block; }
         .post-modal-video { width: 100%; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; margin-bottom: 0.6rem; }
         .post-modal-video iframe { width: 100%; height: 100%; border: none; }
-        .post-modal-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--green-mid); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+        .post-modal-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--coral); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
         .post-modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green-dark); margin-bottom: 0.4rem; line-height: 1.2; }
         .post-modal-date { font-size: 0.78rem; color: var(--text-light); margin-bottom: 1rem; }
         .post-modal-content { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; white-space: pre-wrap; }
@@ -176,18 +191,18 @@
         .about-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 0.3rem 0.85rem; border-radius: 50px; font-size: 0.78rem; font-weight: 500; }
         .pills-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.8rem; }
         .pills-list li { display: flex; align-items: flex-start; gap: 0.8rem; }
-        .pills-list li i { color: var(--green-mid); margin-top: 0.15rem; flex-shrink: 0; }
-        .pills-list li span { color: var(--text-mid); font-size: 0.93rem; line-height: 1.5; }
+        .pills-list li i { color: var(--green-light); margin-top: 0.15rem; flex-shrink: 0; }
+        .pills-list li span { color: rgba(255,255,255,0.78); font-size: 0.93rem; line-height: 1.5; }
 
         /* CONTACT */
         .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
-        .contact-info p { color: var(--text-mid); font-size: 1rem; line-height: 1.7; margin-bottom: 1.8rem; }
+        .contact-info p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.7; margin-bottom: 1.8rem; }
         .contact-channels { display: flex; flex-direction: column; gap: 0.8rem; }
-        .contact-channel { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; background: white; border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text-dark); transition: all 0.2s; min-height: var(--touch); }
-        .contact-channel:hover { border-color: var(--green-mid); box-shadow: 0 4px 16px rgba(26,92,56,0.08); }
+        .contact-channel { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; text-decoration: none; color: rgba(255,255,255,0.9); transition: all 0.2s; min-height: var(--touch); }
+        .contact-channel:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.25); }
         .channel-icon { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
         .ch-wp { background: #e7fdf1; color: #25D366; } .ch-ig { background: #fde7e7; color: #c13584; } .ch-fb { background: #e7effd; color: #1877F2; }
-        .ch-title { font-weight: 600; font-size: 0.88rem; } .ch-val { font-size: 0.82rem; color: var(--text-mid); }
+        .ch-title { font-weight: 600; font-size: 0.88rem; } .ch-val { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
         .contact-cta-box { background: linear-gradient(135deg, var(--green-dark), #3aaa68); border-radius: 24px; padding: 2.2rem; color: white; text-align: center; }
         .contact-cta-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.7rem; }
         .contact-cta-box p { opacity: 0.85; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1.6rem; }
@@ -216,7 +231,7 @@
         .form-submit { width: 100%; padding: 0.95rem; border: none; border-radius: 50px; background: var(--green-dark); color: white; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: var(--touch); transition: opacity 0.2s; }
         .form-submit:active { opacity: 0.85; }
         .review-success { display: none; text-align: center; padding: 1.5rem; background: var(--green-pale); border-radius: 14px; color: var(--green-dark); font-weight: 600; margin-top: 1rem; }
-        .review-note { font-size: 0.78rem; color: var(--text-light); text-align: center; margin-top: 0.8rem; }
+        .review-note { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-align: center; margin-top: 0.8rem; }
 
         /* LIGHTBOX */
         .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; flex-direction: column; }
@@ -231,6 +246,26 @@
         .lightbox-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
         .lightbox-dot.active { background: white; }
         .lightbox-counter { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-left: 0.5rem; }
+
+        /* INSTAGRAM */
+        .ig-card { display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: white; border-radius: 20px; padding: 1.4rem 1.8rem; border: 1px solid var(--border); text-decoration: none; color: var(--text-dark); max-width: 520px; box-shadow: 0 4px 20px rgba(26,92,56,0.08); transition: box-shadow 0.2s, transform 0.2s; }
+        .ig-card:hover { box-shadow: 0 10px 36px rgba(26,92,56,0.14); transform: translateY(-2px); }
+        .ig-card-left { display: flex; align-items: center; gap: 1rem; }
+        .ig-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: white; flex-shrink: 0; }
+        .ig-name { font-weight: 700; font-size: 1rem; color: var(--text-dark); }
+        .ig-handle { font-size: 0.85rem; color: var(--text-light); margin-top: 0.1rem; }
+        .ig-follow-btn { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); color: white; padding: 0.55rem 1.3rem; border-radius: 50px; font-weight: 700; font-size: 0.88rem; white-space: nowrap; }
+        .ig-footer-note { margin-top: 1.2rem; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+        /* Hero oscuro — fondo verde profundo */
+        .hero { background: linear-gradient(135deg, #1b3d26 0%, #265c3a 55%, #1f4a30 100%) !important; }
+        .hero-badge { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.92); border-color: rgba(255,255,255,0.2); }
+        .hero-title { color: white; }
+        .hero-title span { color: var(--gold-light); }
+        .hero-sub { color: rgba(255,255,255,0.8); }
+        .btn-secondary { color: white; border-color: rgba(255,255,255,0.45); }
+        .btn-secondary:hover { background: white; color: var(--green-dark); border-color: white; }
+        .hero::before { background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); }
 
         /* FOOTER */
         footer { background: var(--green-dark); color: rgba(255,255,255,0.65); text-align: center; padding: 2rem 5%; font-size: 0.85rem; }
@@ -254,9 +289,10 @@
             .section { padding: 3rem 5%; }
             .services-grid { grid-template-columns: 1fr 1fr; }
             .catalog-grid { grid-template-columns: 1fr 1fr; }
+            .blog-card { flex: 0 0 240px; }
         }
         @media (max-width: 480px) {
-            .food-grid { grid-template-columns: 1fr; }
+            .food-grid { grid-template-columns: 1fr 1fr; }
             .services-grid { grid-template-columns: 1fr; }
             .catalog-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -264,6 +300,16 @@
             .catalog-grid { grid-template-columns: 1fr; }
             .nav-logo { font-size: 1.05rem; }
         }
+
+        /* SCROLL REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1); }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1); }
+        .reveal-left.visible { opacity: 1; transform: none; }
+        .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1); }
+        .reveal-scale.visible { opacity: 1; transform: none; }
+        .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.18s; } .d3 { transition-delay: 0.26s; } .d4 { transition-delay: 0.34s; }
+        @media (prefers-reduced-motion: reduce) { .reveal, .reveal-left, .reveal-scale { transition: none !important; opacity: 1; transform: none; } }
     </style>
 </head>
 <body>
@@ -297,7 +343,7 @@
 <section class="hero" id="inicio">
     <div class="dots-pattern"></div>
     <div class="hero-inner">
-        <div class="hero-text">
+        <div class="hero-text reveal">
             <div class="hero-badge"><i class="fas fa-leaf"></i> Nutrióloga · Emprendedora Digital</div>
             <h1 class="hero-title">Tu salud<br><span>comienza aquí</span></h1>
             <p class="hero-sub">Hola, soy <strong>Ilhiana Vallecillo</strong>. Te acompaño hacia una nutrición real y sostenible — y también te enseño a construir un negocio propio que cambie tu vida.</p>
@@ -306,7 +352,7 @@
                 <a href="#menu" class="btn-secondary">Ver menú <i class="fas fa-arrow-down"></i></a>
             </div>
         </div>
-        <div class="hero-card">
+        <div class="hero-card reveal-scale d1">
             <div class="profile-photo-wrap">
                 <div class="profile-photo-ring"></div>
                 <div class="profile-photo-ring-inner">
@@ -317,9 +363,9 @@
             <div class="profile-handle">@ilhianavallecillorn</div>
             <div class="profile-bio">🥗 Nutrióloga certificada<br>🍵 El Rinconcito del Té<br>🌿 Distribuidora Red Natura<br>📍 Chiapas, México</div>
             <div class="profile-stats">
-                <div class="stat-item"><div class="stat-num">+100</div><div class="stat-label">Clientes</div></div>
-                <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Servicios</div></div>
-                <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Natural</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="100" data-prefix="+">+100</div><div class="stat-label">Clientes</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="4">4</div><div class="stat-label">Servicios</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="100" data-suffix="%">100%</div><div class="stat-label">Natural</div></div>
             </div>
             <div class="profile-social">
                 <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="social-pill social-ig"><i class="fab fa-instagram"></i> Instagram</a>
@@ -333,14 +379,14 @@
 <!-- SERVICES -->
 <section class="section" id="servicios">
     <div class="container">
-        <div class="section-label">Lo que hago</div>
-        <h2 class="section-title">Mis servicios</h2>
-        <p class="section-desc">Soluciones integrales para tu salud y tu libertad financiera.</p>
+        <div class="section-label reveal">Lo que hago</div>
+        <h2 class="section-title reveal d1">Mis servicios</h2>
+        <p class="section-desc reveal d2">Soluciones integrales para tu salud y tu libertad financiera.</p>
         <div class="services-grid">
-            <div class="service-card"><div class="service-icon"><i class="fas fa-stethoscope"></i></div><div class="service-title">Consultas de Nutrición</div><div class="service-desc">Evaluación personalizada de tu estado nutricional para diseñar la estrategia ideal para tu cuerpo.</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-utensils"></i></div><div class="service-title">Planes de Alimentación</div><div class="service-desc">Menús 100% personalizados según tus gustos, horarios y metas de salud.</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-leaf"></i></div><div class="service-title">Productos Red Natura</div><div class="service-desc">Suplementos y productos naturales de calidad. Venta y asesoría personalizada.</div></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><div class="service-title">Mentoría de Negocio Digital</div><div class="service-desc">Construye tu propio negocio desde cero con ingresos recurrentes y libertad total.</div></div>
+            <div class="service-card reveal"><div class="service-icon"><i class="fas fa-stethoscope"></i></div><div class="service-title">Consultas de Nutrición</div><div class="service-desc">Evaluación personalizada de tu estado nutricional para diseñar la estrategia ideal para tu cuerpo.</div></div>
+            <div class="service-card reveal d1"><div class="service-icon"><i class="fas fa-utensils"></i></div><div class="service-title">Planes de Alimentación</div><div class="service-desc">Menús 100% personalizados según tus gustos, horarios y metas de salud.</div></div>
+            <div class="service-card reveal d2"><div class="service-icon"><i class="fas fa-leaf"></i></div><div class="service-title">Productos Red Natura</div><div class="service-desc">Suplementos y productos naturales de calidad. Venta y asesoría personalizada.</div></div>
+            <div class="service-card reveal d3"><div class="service-icon"><i class="fas fa-rocket"></i></div><div class="service-title">Mentoría de Negocio Digital</div><div class="service-desc">Construye tu propio negocio desde cero con ingresos recurrentes y libertad total.</div></div>
         </div>
     </div>
 </section>
@@ -418,7 +464,7 @@
                 <p class="section-desc" style="margin-bottom:0">Lo último de Ilhiana — nuevos productos, consejos de nutrición, actividades y más.</p>
             </div>
         </div>
-        <div class="blog-scroll" id="blogGrid">
+        <div class="blog-grid" id="blogGrid">
             <div class="blog-empty" id="blogEmpty">Cargando publicaciones...</div>
         </div>
     </div>
@@ -428,7 +474,7 @@
 <section class="section section-alt" id="sobre-mi">
     <div class="container">
         <div class="about-inner">
-            <div class="about-visual">
+            <div class="about-visual reveal-left">
                 <div class="big-letter">IV</div>
                 <div class="tagline">Nutrición · Salud · Negocio</div>
                 <div class="sub">Chiapas, México</div>
@@ -437,7 +483,7 @@
                     <span class="about-tag">Red Natura</span><span class="about-tag">Emprendedora</span>
                 </div>
             </div>
-            <div class="about-content">
+            <div class="about-content reveal d1">
                 <div class="section-label">Sobre mí</div>
                 <h2 class="section-title">Más que una nutrióloga</h2>
                 <ul class="pills-list">
@@ -468,7 +514,7 @@
 <section class="section section-alt" id="contacto">
     <div class="container">
         <div class="contact-inner">
-            <div class="contact-info">
+            <div class="contact-info reveal">
                 <div class="section-label">Contacto</div>
                 <h2 class="section-title">¿Lista para empezar?</h2>
                 <p>Escríbeme y cuéntame tu objetivo — nutrición, pedido del Rinconcito, productos Red Natura o negocio digital.</p>
@@ -479,7 +525,7 @@
                     <a href="https://www.facebook.com/share/1E8qZn8HEz/?mibextid=wwXIfr" target="_blank" class="contact-channel"><div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div><div class="channel-text"><div class="ch-title">El Rinconcito del Té</div><div class="ch-val">Página del negocio</div></div><i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i></a>
                 </div>
             </div>
-            <div class="contact-cta-box">
+            <div class="contact-cta-box reveal-scale d2">
                 <h3>¡Hablemos hoy!</h3>
                 <p>Una consulta puede cambiar tu vida. Da el primer paso hacia tu bienestar y tu libertad financiera.</p>
                 <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank" class="btn-white"><i class="fab fa-whatsapp"></i> Escribir ahora</a>
@@ -497,7 +543,7 @@
         <div class="reviews-grid" id="reviewsGrid">
             <div style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:2rem" id="reviewsLoading">Cargando reseñas...</div>
         </div>
-        <div class="review-form-wrap">
+        <div class="review-form-wrap reveal">
             <h3>Deja tu reseña</h3>
             <p>¿Ya probaste algo del Rinconcito o tuviste una consulta? Cuéntanos tu experiencia.</p>
             <div class="star-picker">
@@ -666,7 +712,7 @@ function mediaSlideHTML(m) {
     if (id) {
         return `<div class="pm-slide"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe></div>`;
     }
-    return '';
+    return `<div class="pm-slide" style="background:#000"><video src="${m.url}" controls playsinline style="width:100%;height:100%;object-fit:contain;display:block"></video></div>`;
 }
 
 let pmCurrent = 0;
@@ -768,13 +814,19 @@ async function loadBlog() {
                     mediaCover = `<img src="${first.url}" class="blog-card-img" alt="${p.title}" loading="lazy">`;
                 } else {
                     const id = getYouTubeId(first.url);
-                    mediaCover = id ? ytThumbHTML(id) : `<div class="blog-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green-light)"><i class="fas fa-newspaper"></i></div>`;
+                    if (id) {
+                        mediaCover = ytThumbHTML(id);
+                    } else if (first.url) {
+                        mediaCover = `<video src="${first.url}" class="blog-card-img" muted playsinline preload="metadata" style="object-fit:cover;pointer-events:none"></video>`;
+                    } else {
+                        mediaCover = `<div class="blog-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green-light)"><i class="fas fa-newspaper"></i></div>`;
+                    }
                 }
             } else {
                 mediaCover = `<div class="blog-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green-light)"><i class="fas fa-newspaper"></i></div>`;
             }
             const mediaCount = postMediaItems.length > 1 ? `<span style="position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.55);color:white;border-radius:20px;font-size:0.72rem;padding:0.2rem 0.55rem;font-weight:600"><i class="fa-solid fa-images"></i> ${postMediaItems.length}</span>` : '';
-            return `<div class="blog-card" onclick="openPost(_blogPosts[${i}])">
+            return `<div class="blog-card reveal" onclick="openPost(_blogPosts[${i}])">
                 <div style="position:relative">${mediaCover}${mediaCount}</div>
                 <div class="blog-card-body">
                     <div class="blog-cat">${p.category || 'Noticias'}</div>
@@ -785,6 +837,7 @@ async function loadBlog() {
                 </div>
             </div>`;
         }).join('');
+    observeReveal(grid);
     } catch (e) {
         grid.innerHTML = '<div class="blog-empty">No se pudieron cargar las publicaciones.</div>';
     }
@@ -807,13 +860,14 @@ async function loadCatalog() {
             grid.innerHTML = '<div class="catalog-empty">Próximamente productos Red Natura disponibles.<br>Escríbeme por WhatsApp para asesoría personalizada.</div>';
             return;
         }
-        grid.innerHTML = items.map(item => {
+        grid.innerHTML = items.map((item, i) => {
             const img = item.imageUrl
                 ? `<img src="${item.imageUrl}" class="catalog-img" alt="${item.name}">`
                 : `<div class="catalog-img-placeholder"><i class="fas fa-leaf"></i></div>`;
             const price = item.price ? `<span class="catalog-price">$${item.price}</span>` : '';
             const wpText = encodeURIComponent(`Hola Ilhiana, me interesa el producto: ${item.name}`);
-            return `<div class="catalog-card">
+            const dd = ['','d1','d2','d3'][i % 4];
+            return `<div class="catalog-card reveal ${dd}">
                 ${img}
                 <div class="catalog-body">
                     ${item.category ? `<span class="catalog-badge">${item.category}</span>` : ''}
@@ -826,6 +880,7 @@ async function loadCatalog() {
                 </div>
             </div>`;
         }).join('');
+        observeReveal(grid);
     } catch (e) {
         grid.innerHTML = '<div class="catalog-empty">No se pudo cargar el catálogo.</div>';
     }
@@ -847,10 +902,11 @@ async function loadReviews() {
                 <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Ilhiana me hizo mi plan de nutrición y en dos meses bajé 6 kilos sin pasar hambre. Super recomendada."</div><div class="review-author"><div class="review-avatar">JP</div><div><div class="review-name">Juan P.</div><div class="review-date">Abril 2026</div></div></div></div>`;
             return;
         }
-        grid.innerHTML = reviews.map(r => {
+        grid.innerHTML = reviews.map((r, i) => {
             const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
             const initials = r.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-            return `<div class="review-card">
+            const dd = ['','d1','d2','d3'][i % 4];
+            return `<div class="review-card reveal ${dd}">
                 <div class="review-stars">${stars}</div>
                 <div class="review-text">"${r.text}"</div>
                 <div class="review-author">
@@ -859,6 +915,7 @@ async function loadReviews() {
                 </div>
             </div>`;
         }).join('');
+        observeReveal(grid);
     } catch (e) {
         document.getElementById('reviewsLoading').textContent = '';
     }
@@ -892,11 +949,63 @@ window.submitReview = async function() {
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publicar reseña';
 };
 
+// ── Scroll Reveal ──
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.12 });
+
+window.observeReveal = function(root = document) {
+    root.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revealObserver.observe(el));
+};
+observeReveal();
+
+// ── Counter ──
+const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target) || 0;
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const dur = 1600;
+        const t0 = performance.now();
+        const tick = (now) => {
+            const p = Math.min((now - t0) / dur, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            el.textContent = prefix + Math.round(e * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObs.unobserve(el);
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// ── Parallax hero card ──
+if (window.matchMedia('(min-width:900px) and (prefers-reduced-motion:no-preference)').matches) {
+    const hCard = document.querySelector('.hero-card');
+    if (hCard) {
+        window.addEventListener('scroll', () => {
+            hCard.style.transform = `translateY(${Math.min(window.scrollY * 0.08, 50)}px)`;
+        }, { passive: true });
+    }
+}
+
 // Init
 loadBlog();
 loadCatalog();
 loadReviews();
 </script>
+
+<div class="vine-strip" aria-hidden="true">
+    <i class="fas fa-leaf vl" style="top:8%"></i>
+    <i class="fas fa-leaf vl vl-r" style="top:20%"></i>
+    <i class="fas fa-seedling vl" style="top:34%"></i>
+    <i class="fas fa-leaf vl vl-r" style="top:48%"></i>
+    <i class="fas fa-leaf vl" style="top:62%"></i>
+    <i class="fas fa-seedling vl vl-r" style="top:76%"></i>
+    <i class="fas fa-leaf vl" style="top:90%"></i>
+</div>
 
 </body>
 </html>

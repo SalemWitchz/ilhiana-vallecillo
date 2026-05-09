@@ -126,8 +126,10 @@
         .upload-label { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem; border-radius: 7px; border: 1.5px solid var(--green-dark); color: var(--green-dark); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: background 0.2s; background: white; }
         .upload-label:hover { background: var(--green-pale); }
         .upload-label input { display: none; }
-        .media-uploading { font-size: 0.8rem; color: var(--text-light); display: none; align-items: center; gap: 0.4rem; }
-        .media-uploading.show { display: flex; }
+        .media-uploading { font-size: 0.82rem; color: var(--green-dark); display: none; background: rgba(26,92,56,0.07); border-radius: 10px; padding: 0.65rem 0.9rem; margin-top: 0.4rem; }
+        .media-uploading.show { display: block; }
+        .upload-progress-wrap { height: 5px; background: rgba(26,92,56,0.15); border-radius: 3px; overflow: hidden; margin-top: 0.15rem; }
+        .upload-bar { height: 100%; background: var(--green-mid); border-radius: 3px; transition: width 0.12s; width: 0%; }
 
         /* RESPONSIVE */
         @media (max-width: 600px) {
@@ -147,7 +149,8 @@
         <div class="logo">🌿</div>
         <h1>Panel de administración</h1>
         <p>Ilhiana Vallecillo</p>
-        <div class="login-error" id="login-error">Contraseña incorrecta</div>
+        <div class="login-error" id="login-error">Email o contraseña incorrectos</div>
+        <input type="email" id="email-input" placeholder="Email" onkeydown="if(event.key==='Enter')doLogin()">
         <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
         <button onclick="doLogin()">Entrar</button>
     </div>
@@ -235,12 +238,19 @@
                 <div id="media-list" class="media-list"></div>
                 <div class="media-add-btns">
                     <label class="upload-label">
-                        <i class="fa-solid fa-image"></i> Subir imagen
-                        <input type="file" id="img-file-input" accept="image/*" multiple onchange="handleImageFiles(this)">
+                        <i class="fa-solid fa-photo-film"></i> Fotos y videos
+                        <input type="file" id="img-file-input" accept="image/*,video/*" multiple onchange="handleImageFiles(this)">
                     </label>
-                    <button type="button" class="btn btn-outline btn-sm" onclick="addYouTubeMedia()"><i class="fa-brands fa-youtube"></i> Añadir video YouTube</button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="addYouTubeMedia()"><i class="fa-brands fa-youtube"></i> YouTube</button>
                 </div>
-                <div class="media-uploading" id="media-uploading"><i class="fa-solid fa-circle-notch fa-spin"></i> Subiendo imagen...</div>
+                <div class="media-uploading" id="media-uploading">
+                    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.35rem">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span id="upload-progress-label">Subiendo...</span>
+                        <span id="upload-progress-text" style="margin-left:auto;font-weight:700;font-size:0.78rem">0%</span>
+                    </div>
+                    <div class="upload-progress-wrap"><div class="upload-bar" id="upload-progress-bar"></div></div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="toggle-group">
@@ -290,8 +300,21 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>URL de imagen (opcional)</label>
-                    <input type="url" id="cat-image" placeholder="https://...">
+                    <label>Imagen del producto</label>
+                    <img id="cat-img-preview" src="" alt="" style="display:none;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;margin-bottom:0.6rem;background:var(--green-pale)">
+                    <label class="upload-label">
+                        <i class="fa-solid fa-image"></i> Subir imagen
+                        <input type="file" id="cat-img-file" accept="image/*" onchange="handleCatalogImage(this)">
+                    </label>
+                    <div class="media-uploading" id="cat-uploading">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.35rem">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Subiendo imagen...</span>
+                            <span id="cat-progress-text" style="margin-left:auto;font-weight:700;font-size:0.78rem">0%</span>
+                        </div>
+                        <div class="upload-progress-wrap"><div class="upload-bar" id="cat-progress-bar"></div></div>
+                    </div>
+                    <input type="hidden" id="cat-image" value="">
                 </div>
                 <div class="form-group">
                     <label>Orden (número)</label>
@@ -321,6 +344,8 @@ import {
     getFirestore, collection, addDoc, getDocs, getDoc, doc,
     updateDoc, deleteDoc, orderBy, query, serverTimestamp, where
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDSUCgrP8gDG1hDDbh8HKpC2WCHCc18DXc",
@@ -334,28 +359,37 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
 
-// ── Password ──
-const PASSWORD = "ilhiana2025";
+// ── Auth ──
+function showAdmin() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    loadReviews();
+}
+function showLogin() {
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+}
 
-window.doLogin = function() {
-    const val = document.getElementById('pwd-input').value;
-    if (val === PASSWORD) {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('admin-screen').style.display = 'block';
-        loadReviews();
-    } else {
-        document.getElementById('login-error').style.display = 'block';
+onAuthStateChanged(auth, user => { if (user) showAdmin(); else showLogin(); });
+
+window.doLogin = async function() {
+    const email = document.getElementById('email-input').value.trim();
+    const pwd = document.getElementById('pwd-input').value;
+    const errEl = document.getElementById('login-error');
+    errEl.style.display = 'none';
+    try {
+        await signInWithEmailAndPassword(auth, email, pwd);
+    } catch {
+        errEl.style.display = 'block';
         document.getElementById('pwd-input').value = '';
         document.getElementById('pwd-input').focus();
     }
 };
 
-window.doLogout = function() {
-    document.getElementById('admin-screen').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('pwd-input').value = '';
-};
+window.doLogout = function() { signOut(auth); };
 
 // ── Tabs ──
 window.switchTab = function(tab) {
@@ -523,8 +557,43 @@ function getFirstImage(p) {
 }
 
 // ── Media manager ──
-const IMGBB_KEY = '66d6949f6092fdef9f3b630ef9bc3947';
 let postMedia = [];
+let catalogImageUrl = '';
+
+async function compressImage(file, maxPx = 1200) {
+    if (!file.type.startsWith('image/')) return file;
+    return new Promise(resolve => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+            URL.revokeObjectURL(url);
+            const ratio = Math.min(1, maxPx / Math.max(img.width, img.height));
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.round(img.width * ratio);
+            canvas.height = Math.round(img.height * ratio);
+            canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => resolve(blob || file), 'image/webp', 0.82);
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+        img.src = url;
+    });
+}
+
+async function uploadFileToStorage(file, folder, onProgress) {
+    const isImage = file.type.startsWith('image/');
+    const blob = isImage ? await compressImage(file) : file;
+    const ext = isImage ? 'webp' : (file.name.split('.').pop() || 'mp4');
+    const name = `${folder}/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+    const storageRef = ref(storage, name);
+    const task = uploadBytesResumable(storageRef, blob, { contentType: isImage ? 'image/webp' : file.type });
+    return new Promise((resolve, reject) => {
+        task.on('state_changed',
+            s => onProgress && onProgress(Math.round(s.bytesTransferred / s.totalBytes * 100)),
+            reject,
+            async () => resolve(await getDownloadURL(task.snapshot.ref))
+        );
+    });
+}
 
 function renderMediaList() {
     const list = document.getElementById('media-list');
@@ -536,10 +605,16 @@ function renderMediaList() {
                 <span class="media-item-label">${m.url.split('/').pop()}</span>
                 <button class="media-item-remove" onclick="removeMedia(${i})" title="Quitar"><i class="fa-solid fa-xmark"></i></button>
             </div>`;
+        } else if (m.url && !m.url.match(/youtu/i)) {
+            return `<div class="media-item">
+                <div class="media-item-icon" style="background:var(--green-pale);color:var(--green-mid)"><i class="fa-solid fa-video"></i></div>
+                <span class="media-item-label">Video local</span>
+                <button class="media-item-remove" onclick="removeMedia(${i})" title="Quitar"><i class="fa-solid fa-xmark"></i></button>
+            </div>`;
         } else {
             return `<div class="media-item">
                 <div class="media-item-icon"><i class="fa-brands fa-youtube"></i></div>
-                <span class="media-item-label">YouTube: ${m.url}</span>
+                <span class="media-item-label">YouTube</span>
                 <button class="media-item-remove" onclick="removeMedia(${i})" title="Quitar"><i class="fa-solid fa-xmark"></i></button>
             </div>`;
         }
@@ -555,22 +630,23 @@ window.handleImageFiles = async function(input) {
     const files = Array.from(input.files);
     if (!files.length) return;
     const uploading = document.getElementById('media-uploading');
+    const bar = document.getElementById('upload-progress-bar');
+    const txt = document.getElementById('upload-progress-text');
+    const lbl = document.getElementById('upload-progress-label');
     uploading.classList.add('show');
-    for (const file of files) {
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
         try {
-            const fd = new FormData();
-            fd.append('key', IMGBB_KEY);
-            fd.append('image', file);
-            const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd });
-            const json = await res.json();
-            if (json.success) {
-                postMedia.push({ type: 'image', url: json.data.display_url });
-                renderMediaList();
-            } else {
-                toast('Error subiendo imagen: ' + (json.error?.message || 'desconocido'), true);
-            }
+            lbl.textContent = files.length > 1 ? `Subiendo ${i + 1} de ${files.length}...` : 'Subiendo...';
+            bar.style.width = '0%'; txt.textContent = '0%';
+            const url = await uploadFileToStorage(file, 'blog', pct => {
+                bar.style.width = pct + '%';
+                txt.textContent = pct + '%';
+            });
+            postMedia.push({ type: file.type.startsWith('video/') ? 'video' : 'image', url });
+            renderMediaList();
         } catch (e) {
-            toast('Error de conexión al subir imagen', true);
+            toast(`Error al subir ${file.name}`, true);
         }
     }
     uploading.classList.remove('show');
@@ -582,6 +658,31 @@ window.addYouTubeMedia = function() {
     if (!url) return;
     postMedia.push({ type: 'video', url: url.trim() });
     renderMediaList();
+};
+
+window.handleCatalogImage = async function(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const uploading = document.getElementById('cat-uploading');
+    const bar = document.getElementById('cat-progress-bar');
+    const txt = document.getElementById('cat-progress-text');
+    uploading.classList.add('show');
+    try {
+        bar.style.width = '0%'; txt.textContent = '0%';
+        const url = await uploadFileToStorage(file, 'catalog', pct => {
+            bar.style.width = pct + '%';
+            txt.textContent = pct + '%';
+        });
+        catalogImageUrl = url;
+        document.getElementById('cat-image').value = url;
+        const prev = document.getElementById('cat-img-preview');
+        prev.src = url; prev.style.display = 'block';
+        toast('Imagen subida');
+    } catch (e) {
+        toast('Error al subir la imagen', true);
+    }
+    uploading.classList.remove('show');
+    input.value = '';
 };
 
 window.openPostForm = function() {
@@ -699,11 +800,14 @@ function renderCatalog() {
 
 window.openCatalogForm = function() {
     editingProductId = null;
+    catalogImageUrl = '';
     document.getElementById('catalog-modal-title').textContent = 'Nuevo producto';
     document.getElementById('cat-name').value = '';
     document.getElementById('cat-desc').value = '';
     document.getElementById('cat-price').value = '';
     document.getElementById('cat-image').value = '';
+    const prev = document.getElementById('cat-img-preview');
+    prev.style.display = 'none'; prev.src = '';
     document.getElementById('cat-category').value = 'nutricion';
     document.getElementById('cat-order').value = (allProducts.length + 1);
     document.getElementById('cat-available').checked = true;
@@ -714,11 +818,15 @@ window.editProduct = function(id) {
     const p = allProducts.find(p => p.id === id);
     if (!p) return;
     editingProductId = id;
+    catalogImageUrl = p.imageUrl || '';
     document.getElementById('catalog-modal-title').textContent = 'Editar producto';
     document.getElementById('cat-name').value = p.name || '';
     document.getElementById('cat-desc').value = p.description || '';
     document.getElementById('cat-price').value = p.price || '';
     document.getElementById('cat-image').value = p.imageUrl || '';
+    const prev = document.getElementById('cat-img-preview');
+    if (p.imageUrl) { prev.src = p.imageUrl; prev.style.display = 'block'; }
+    else { prev.style.display = 'none'; prev.src = ''; }
     document.getElementById('cat-category').value = p.category || 'nutricion';
     document.getElementById('cat-order').value = p.order || 1;
     document.getElementById('cat-available').checked = !!p.available;
