@@ -149,8 +149,7 @@
         <div class="logo">🌿</div>
         <h1>Panel de administración</h1>
         <p>Ilhiana Vallecillo</p>
-        <div class="login-error" id="login-error">Email o contraseña incorrectos</div>
-        <input type="email" id="email-input" placeholder="Email" onkeydown="if(event.key==='Enter')doLogin()">
+        <div class="login-error" id="login-error">Contraseña incorrecta</div>
         <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
         <button onclick="doLogin()">Entrar</button>
     </div>
@@ -376,12 +375,11 @@ function showLogin() {
 onAuthStateChanged(auth, user => { if (user) showAdmin(); else showLogin(); });
 
 window.doLogin = async function() {
-    const email = document.getElementById('email-input').value.trim();
     const pwd = document.getElementById('pwd-input').value;
     const errEl = document.getElementById('login-error');
     errEl.style.display = 'none';
     try {
-        await signInWithEmailAndPassword(auth, email, pwd);
+        await signInWithEmailAndPassword(auth, 'rbarbarogeta17@gmail.com', pwd);
     } catch {
         errEl.style.display = 'block';
         document.getElementById('pwd-input').value = '';
