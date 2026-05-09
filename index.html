@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilhiana Vallecillo | Nutrióloga &amp; Emprendedora Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --green-dark: #1a5c38;
+            --green-mid: #2d8653;
+            --green-light: #4db87a;
+            --green-pale: #e8f5ee;
+            --green-pale2: #f0faf4;
+            --white: #ffffff;
+            --text-dark: #1a2e1f;
+            --text-mid: #4a6357;
+            --text-light: #8aab97;
+            --border: #d0e8da;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 5%; display: flex; align-items: center;
+            justify-content: space-between; height: 64px;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem;
+            color: var(--green-dark); font-weight: 700; text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-mid);
+            font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--green-dark); }
+        .nav-cta {
+            background: var(--green-dark); color: var(--white) !important;
+            padding: 0.5rem 1.2rem; border-radius: 50px;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--green-mid) !important; color: var(--white) !important; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 80px 5% 60px;
+            background: linear-gradient(135deg, var(--green-pale2) 0%, var(--white) 60%, var(--green-pale) 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(45,134,83,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center; width: 100%;
+        }
+        .hero-text { z-index: 1; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--green-pale); color: var(--green-dark);
+            border: 1px solid var(--border); padding: 0.4rem 1rem;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            line-height: 1.1; color: var(--green-dark); margin-bottom: 1rem;
+        }
+        .hero-title span { color: var(--green-mid); }
+        .hero-sub {
+            font-size: 1.1rem; color: var(--text-mid); line-height: 1.7;
+            margin-bottom: 2rem; max-width: 480px;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: #25D366; color: white; padding: 0.9rem 1.8rem;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: transparent; color: var(--green-dark); padding: 0.9rem 1.8rem;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            font-size: 1rem; border: 2px solid var(--green-dark); transition: all 0.2s;
+        }
+        .btn-secondary:hover { background: var(--green-dark); color: white; }
+
+        /* Profile card */
+        .hero-card {
+            background: white; border-radius: 24px; padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(26,92,56,0.12);
+            border: 1px solid var(--border); text-align: center; position: relative;
+        }
+        .profile-photo-wrap {
+            position: relative; width: 150px; height: 150px; margin: 0 auto 1.2rem;
+        }
+        .profile-photo-ring {
+            position: absolute; inset: -4px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-mid), var(--green-light), #a8e6c3);
+            padding: 4px;
+        }
+        .profile-photo-ring-inner {
+            width: 100%; height: 100%; border-radius: 50%; background: white;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .profile-avatar {
+            width: 100%; height: 100%; border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-size: 3rem;
+            color: white; font-weight: 700;
+        }
+        .profile-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--green-dark); margin-bottom: 0.3rem; }
+        .profile-handle { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
+        .profile-bio { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.5rem; padding: 0 0.5rem; }
+        .profile-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+            border-top: 1px solid var(--border); padding-top: 1.2rem; margin-bottom: 1.5rem;
+        }
+        .stat-num { font-weight: 700; font-size: 1.1rem; color: var(--green-dark); }
+        .stat-label { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.04em; }
+        .profile-social { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+        .social-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem;
+            font-weight: 600; text-decoration: none; transition: opacity 0.2s;
+        }
+        .social-pill:hover { opacity: 0.85; }
+        .social-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+        .social-fb { background: #1877F2; color: white; }
+
+        /* ── SERVICES ── */
+        .section { padding: 5rem 5%; }
+        .section-alt { background: var(--green-pale2); }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--green-mid); margin-bottom: 0.6rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            color: var(--green-dark); margin-bottom: 0.8rem;
+        }
+        .section-desc {
+            color: var(--text-mid); font-size: 1.05rem; line-height: 1.7;
+            max-width: 560px; margin-bottom: 3rem;
+        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .service-card {
+            background: white; border-radius: 20px; padding: 2rem;
+            border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,92,56,0.1); }
+        .service-icon {
+            width: 56px; height: 56px; border-radius: 16px;
+            background: var(--green-pale); display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem; color: var(--green-mid);
+        }
+        .service-title { font-weight: 700; font-size: 1.05rem; color: var(--green-dark); margin-bottom: 0.6rem; }
+        .service-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
+
+        /* ── ABOUT ── */
+        .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-visual {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+            border-radius: 24px; padding: 3rem 2rem; color: white; text-align: center;
+        }
+        .about-visual .big-letter {
+            font-family: 'Playfair Display', serif; font-size: 8rem; line-height: 1;
+            opacity: 0.2; color: white; font-weight: 700;
+        }
+        .about-visual .tagline {
+            font-size: 1.3rem; font-weight: 600; margin-top: -2rem; position: relative; z-index: 1;
+        }
+        .about-visual .sub { font-size: 0.9rem; opacity: 0.75; margin-top: 0.5rem; }
+        .about-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; justify-content: center; }
+        .about-tag {
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+            color: white; padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+        }
+        .pills-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        .pills-list li { display: flex; align-items: flex-start; gap: 0.8rem; }
+        .pills-list li i { color: var(--green-mid); margin-top: 0.1rem; flex-shrink: 0; }
+        .pills-list li span { color: var(--text-mid); font-size: 0.95rem; line-height: 1.5; }
+
+        /* ── CONTACT ── */
+        .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .contact-info p { color: var(--text-mid); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+        .contact-channels { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-channel {
+            display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem;
+            background: white; border: 1px solid var(--border); border-radius: 14px;
+            text-decoration: none; color: var(--text-dark); transition: all 0.2s;
+        }
+        .contact-channel:hover { border-color: var(--green-mid); box-shadow: 0 4px 16px rgba(26,92,56,0.08); }
+        .channel-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .ch-wp { background: #e7fdf1; color: #25D366; }
+        .ch-ig { background: #fde7e7; color: #c13584; }
+        .ch-fb { background: #e7effd; color: #1877F2; }
+        .ch-title { font-weight: 600; font-size: 0.9rem; }
+        .ch-val { font-size: 0.85rem; color: var(--text-mid); }
+        .contact-cta-box {
+            background: linear-gradient(135deg, var(--green-dark), #3aaa68);
+            border-radius: 24px; padding: 2.5rem; color: white; text-align: center;
+        }
+        .contact-cta-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.8rem; }
+        .contact-cta-box p { opacity: 0.85; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.8rem; }
+        .btn-white {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: white; color: var(--green-dark); padding: 0.9rem 2rem;
+            border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--green-dark); color: rgba(255,255,255,0.7);
+            text-align: center; padding: 2rem 5%; font-size: 0.85rem;
+        }
+        footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+        footer a:hover { color: white; }
+
+        /* WhatsApp float */
+        .wp-float {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: white; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.5); z-index: 999; transition: transform 0.2s;
+        }
+        .wp-float:hover { transform: scale(1.1); }
+
+        .dots-pattern {
+            position: absolute; bottom: 2rem; left: 2rem; width: 120px; height: 120px;
+            background-image: radial-gradient(circle, var(--green-mid) 1.5px, transparent 1.5px);
+            background-size: 16px 16px; opacity: 0.15;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-card { order: -1; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#inicio" class="nav-logo">Ilhiana Vallecillo</a>
+    <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="https://wa.me/529681047000" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+    </ul>
+</nav>
+
+<!-- WP FLOAT BUTTON -->
+<a href="https://wa.me/529681047000" target="_blank" class="wp-float" title="Escríbeme por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="dots-pattern"></div>
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-badge">
+                <i class="fas fa-leaf"></i>
+                Nutrióloga · Emprendedora Digital
+            </div>
+            <h1 class="hero-title">
+                Tu salud<br>
+                <span>comienza aquí</span>
+            </h1>
+            <p class="hero-sub">
+                Hola, soy <strong>Ilhiana Vallecillo</strong>. Te acompaño en tu camino hacia una nutrición real, equilibrada y sostenible — y también te enseño cómo construir un negocio propio que cambie tu vida.
+            </p>
+            <div class="hero-actions">
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20interesa%20una%20consulta%20de%20nutrici%C3%B3n" target="_blank" class="btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Agendar consulta
+                </a>
+                <a href="#servicios" class="btn-secondary">
+                    Ver servicios
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROFILE CARD -->
+        <div class="hero-card">
+            <div class="profile-photo-wrap">
+                <div class="profile-photo-ring">
+                    <div class="profile-photo-ring-inner">
+                        <img src="assets/SaveGram.App_684258879_18446268292118989_3216518479347500751_n.jpg" alt="Ilhiana Vallecillo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+                    </div>
+                </div>
+            </div>
+            <div class="profile-name">Ilhiana Vallecillo</div>
+            <div class="profile-handle">@ilhianavallecillorn</div>
+            <div class="profile-bio">
+                🥗 Nutrióloga certificada<br>
+                🌿 Distribuidora Red Natura<br>
+                💻 Emprendedora digital<br>
+                📍 Chiapas, México
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-num">+100</div>
+                    <div class="stat-label">Clientes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">4</div>
+                    <div class="stat-label">Servicios</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">Compromiso</div>
+                </div>
+            </div>
+            <div class="profile-social">
+                <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="social-pill social-ig">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="social-pill social-fb">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+    <div class="container">
+        <div class="section-label">Lo que hago</div>
+        <h2 class="section-title">Mis servicios</h2>
+        <p class="section-desc">
+            Ofrezco soluciones integrales: desde tu salud y alimentación hasta tu libertad financiera con un negocio propio.
+        </p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
+                <div class="service-title">Consultas de Nutrición</div>
+                <div class="service-desc">Evaluación personalizada de tu estado nutricional y hábitos alimenticios para diseñar la mejor estrategia para tu cuerpo y objetivos.</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-utensils"></i></div>
+                <div class="service-title">Planes de Alimentación</div>
+                <div class="service-desc">Menús y guías nutricionales 100% personalizados, adaptados a tus gustos, horarios y metas: bajar de peso, ganar músculo o simplemente sentirte mejor.</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                <div class="service-title">Productos Red Natura</div>
+                <div class="service-desc">Suplementos y productos naturales de alta calidad para complementar tu nutrición. Venta y asesoría personalizada sobre cada producto.</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                <div class="service-title">Mentoría de Negocio Digital</div>
+                <div class="service-desc">Te guío para que construyas tu propio negocio desde cero, con ingresos recurrentes y la libertad de trabajar desde donde quieras.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="sobre-mi">
+    <div class="container">
+        <div class="about-inner">
+            <div class="about-visual">
+                <div class="big-letter">IV</div>
+                <div class="tagline">Nutrición · Salud · Negocio</div>
+                <div class="sub">Chiapas, México</div>
+                <div class="about-tags">
+                    <span class="about-tag">Nutrióloga certificada</span>
+                    <span class="about-tag">Red Natura</span>
+                    <span class="about-tag">Emprendedora</span>
+                    <span class="about-tag">Chiapas</span>
+                    <span class="about-tag">Negocio digital</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="section-label">Sobre mí</div>
+                <h2 class="section-title">Más que una nutrióloga</h2>
+                <ul class="pills-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Nutrióloga certificada</strong> con experiencia acompañando a personas a lograr sus metas de salud de forma sostenible y sin dietas extremas.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Distribuidora Red Natura</strong>, ofreciendo productos naturales de calidad que complementan un estilo de vida saludable.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Emprendedora digital</strong> que ha construido su propio negocio desde Chiapas y ahora enseña a otros a hacer lo mismo.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span>Creo en un enfoque <strong>integral</strong>: cuidar tu cuerpo y también tu economía. La salud y la libertad financiera van de la mano.</span>
+                    </li>
+                </ul>
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" class="btn-secondary" style="width:fit-content;">
+                    <i class="fab fa-whatsapp"></i>
+                    Conoce más sobre mi trabajo
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contacto">
+    <div class="container">
+        <div class="contact-inner">
+            <div class="contact-info">
+                <div class="section-label">Contacto</div>
+                <h2 class="section-title">¿Lista para empezar?</h2>
+                <p>
+                    Da el primer paso hoy. Escríbeme por WhatsApp y cuéntame tu objetivo — ya sea mejorar tu nutrición, conocer los productos Red Natura o emprender tu propio negocio.
+                </p>
+                <div class="contact-channels">
+                    <a href="https://wa.me/529681047000" target="_blank" class="contact-channel">
+                        <div class="channel-icon ch-wp"><i class="fab fa-whatsapp"></i></div>
+                        <div class="channel-text">
+                            <div class="ch-title">WhatsApp Business</div>
+                            <div class="ch-val">+52 968 104 7000</div>
+                        </div>
+                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank" class="contact-channel">
+                        <div class="channel-icon ch-ig"><i class="fab fa-instagram"></i></div>
+                        <div class="channel-text">
+                            <div class="ch-title">Instagram</div>
+                            <div class="ch-val">@ilhianavallecillorn</div>
+                        </div>
+                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank" class="contact-channel">
+                        <div class="channel-icon ch-fb"><i class="fab fa-facebook"></i></div>
+                        <div class="channel-text">
+                            <div class="ch-title">Facebook</div>
+                            <div class="ch-val">Ilhiana Vallecillo</div>
+                        </div>
+                        <i class="fas fa-chevron-right" style="margin-left:auto;color:var(--text-light)"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-cta-box">
+                <h3>¡Hablemos hoy!</h3>
+                <p>Una consulta puede cambiar tu vida. No esperes más para dar el primer paso hacia tu bienestar y tu libertad financiera.</p>
+                <a href="https://wa.me/529681047000?text=Hola%20Ilhiana%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank" class="btn-white">
+                    <i class="fab fa-whatsapp"></i>
+                    Escribir ahora
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Ilhiana Vallecillo &nbsp;·&nbsp; Nutrióloga &amp; Emprendedora Digital &nbsp;·&nbsp; Chiapas, México</p>
+    <p style="margin-top:0.5rem;">
+        <a href="https://www.instagram.com/ilhianavallecillorn/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+        <a href="https://www.facebook.com/share/18ihpfNbnq/?mibextid=wwXIfr" target="_blank">Facebook</a> &nbsp;·&nbsp;
+        <a href="https://wa.me/529681047000" target="_blank">WhatsApp</a>
+    </p>
+</footer>
+
+</body>
+</html>
